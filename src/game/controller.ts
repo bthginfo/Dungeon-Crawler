@@ -1,4 +1,28 @@
-import { CLASSES, FLOORS, ITEMS, QUESTS, RECIPES, NPCS, AFFIXES } from '../content';
+import {
+  CLASSES,
+  FLOORS,
+  ITEMS,
+  QUESTS,
+  RECIPES,
+  NPCS,
+  AFFIXES,
+  ALL_BOSSES,
+  ORIGINS,
+  CITIES,
+  CITY_QUESTS,
+  STORY_CHAPTERS,
+  RUN_MODIFIERS,
+} from '../content';
+import type { NarrativeChoice } from './narrative-types';
+import {
+  contractStatus,
+  acceptContract,
+  progressContracts,
+  bankContracts,
+  rollbackContracts,
+  applyChoice,
+  settleContract,
+} from './contracts';
 import type {
   Campaign,
   GameView,
@@ -12,7 +36,7 @@ import type {
   Dialog,
   WorldObject,
 } from './types';
-import { generateWorld, actor, roomAt, TILE } from './world';
+import { generateWorld, generateCity, actor, roomAt, nearestInteraction, TILE } from './world';
 import { Simulation, effectiveStats, type Input } from './engine';
 import { hashSeed, nextRandom } from './random';
 import {
@@ -90,6 +114,8 @@ export class GameController {
   private audio = new AudioDirector();
   private view: GameView = {
     renderer: { status: 'loading', progress: 0 },
+    cityId: null,
+    questGiver: null,
     phase: 'title',
     panel: 'none',
     paused: false,
@@ -217,15 +243,8 @@ export class GameController {
         ['boss', 'guardian', 'hunt'].includes(a.type) &&
         Math.hypot(a.x - p.x, a.y - p.y) < 650,
     );
-    const def =
-      boss &&
-      FLOORS[this.world.floor - 1] &&
-      [FLOORS[this.world.floor - 1].boss, ...FLOORS[this.world.floor - 1].minibosses].find(
-        (d) => d.id === boss.defId,
-      );
-    const interaction = this.world.objects.find(
-      (o) => o.active && Math.hypot(o.x - p.x, o.y - p.y) < 75,
-    );
+    const def = boss && ALL_BOSSES.find((d) => d.id === boss.defId);
+    const interaction = nearestInteraction(this.world);
     const q =
       this.campaign &&
       QUESTS.find(
@@ -294,22 +313,59 @@ export class GameController {
     this.audio.unlock();
     this.audio.volume(this.view.settings.sound, this.view.settings.music);
     this.attach(createCampaign(classId, name, slot));
+    this.view.phase = 'origin';
+    this.view.panel = 'none';
+    this.view.cityId = null;
+    this.view.questGiver = null;
+    this.view.paused = false;
+    this.emit();
+  }
+  finishOrigin(originId: string, motivation: 'family' | 'truth' | 'revenge') {
+    const c = this.campaign;
+    if (
+      !c ||
+      this.view.phase !== 'origin' ||
+      !ORIGINS.some((o) => o.id === originId) ||
+      !['family', 'truth', 'revenge'].includes(motivation)
+    )
+      return;
+    c.origin = originId;
+    c.choices.motivation = motivation;
+    for (const faction of ['union', 'residents', 'archive', 'sponsors'])
+      c.relationships[`faction-${faction}`] = 50;
+    c.relationships[
+      `faction-${motivation === 'family' ? 'residents' : motivation === 'truth' ? 'archive' : 'union'}`
+    ] = 58;
+    c.choices.currentCity = 'haven';
     this.returnHub();
-    this.toast(
-      txt(
-        'NIX hat dich gefunden. Die Sendung beginnt.',
-        'NIX has found you. The broadcast begins.',
-      ),
+    this.visitCity('haven');
+    this.showDialog(
+      {
+        speaker: 'NIX',
+        title: txt('Unter der letzten Stadt', 'Below the last city'),
+        lines: [
+          ORIGINS.find((o) => o.id === originId)!.personalGoal,
+          CITIES[0].description,
+          txt(
+            'Tam hält den Kesselhafen offen. Sprich mit ihm über Aufträge; Ilya sucht nach den ungeschnittenen Zuglisten. Am Reisetor beginnt deine erste Expedition.',
+            'Tam keeps Boilerhaven open. Ask him about contracts; Ilya is looking for unedited train records. Your first expedition begins at the travel gate.',
+          ),
+        ],
+        choices: [{ id: 'explore', label: txt('Den Kesselhafen erkunden', 'Explore Boilerhaven') }],
+      },
+      () => this.closePanel(),
     );
   }
   async loadSlot(slot: number) {
     const local = await loadCampaign(slot);
     if (local && validCampaign(local)) {
       this.attach(local);
-      this.view.phase = local.ending ? 'ending' : local.world ? 'playing' : 'hub';
+      this.view.phase = this.savedPhase(local);
+      this.view.cityId = null;
+      this.view.questGiver = null;
       this.view.panel = 'none';
       this.view.paused = false;
-      if (!local.world) this.makeHub();
+      if (!local.world) this.restoreRefuge();
       this.audio.unlock();
       this.emit();
     }
@@ -320,15 +376,13 @@ export class GameController {
         if (!local) {
           await saveCampaign(cloud.campaign);
           this.attach(cloud.campaign);
-          this.view.phase = cloud.campaign.ending
-            ? 'ending'
-            : cloud.campaign.world
-              ? 'playing'
-              : 'hub';
+          this.view.phase = this.savedPhase(cloud.campaign);
           this.view.panel = 'none';
           this.view.paused = false;
           this.audio.unlock();
-          if (!cloud.campaign.world) this.makeHub();
+          this.view.cityId = null;
+          this.view.questGiver = null;
+          if (!cloud.campaign.world) this.restoreRefuge();
         } else if (!sameCampaign(local, cloud.campaign)) {
           this.view.account = {
             ...this.view.account,
@@ -374,6 +428,169 @@ export class GameController {
     });
     this.world.player.hp = this.world.player.maxHp;
   }
+  private restoreRefuge() {
+    const c = this.campaign!;
+    if (c.ending && c.choices.refuge !== 'town') {
+      this.makeHub();
+      return;
+    }
+    const city = CITIES.find(
+      (s) => s.id === c.choices.currentCity && s.unlockFloor <= c.floorUnlocked,
+    );
+    if (c.choices.refuge === 'town' && city) this.visitCity(city.id);
+    else this.makeHub();
+  }
+  private savedPhase(c: Campaign): GameView['phase'] {
+    return c.world
+      ? 'playing'
+      : c.ending && !['hub', 'town'].includes(c.choices.refuge)
+        ? 'ending'
+        : 'hub';
+  }
+  visitCity(id: string) {
+    const c = this.campaign,
+      city = CITIES.find((s) => s.id === id);
+    if (
+      !c ||
+      !city ||
+      city.unlockFloor > c.floorUnlocked ||
+      (this.view.phase === 'playing' && c.world)
+    )
+      return;
+    this.world = generateCity(city, hashSeed(`city:${id}:${c.createdAt}`), c.classId);
+    c.world = null;
+    c.choices.currentCity = id;
+    c.choices.refuge = 'town';
+    this.view.cityId = id;
+    this.view.questGiver = null;
+    this.view.phase = 'town';
+    this.view.panel = 'none';
+    this.view.dialog = null;
+    this.view.paused = false;
+    this.input.moveX = this.input.moveY = 0;
+    this.input.attacking = false;
+    this.simulation = new Simulation(this.world, c, this.view.settings, {
+      kill() {},
+      room: (r) => this.onRoom(r),
+      death() {},
+      feedback: (kind) => this.audio.play(kind),
+    });
+    this.world.player.hp = this.world.player.maxHp;
+    this.rebuildShop();
+    this.emit();
+    void this.persist();
+  }
+  leaveCity() {
+    if (this.view.phase !== 'town') return;
+    this.returnHub();
+  }
+  setRoute(route: 'balanced' | 'dangerous' | 'exploration') {
+    if (!this.campaign || !['balanced', 'dangerous', 'exploration'].includes(route)) return;
+    this.campaign.choices.route = route;
+    this.emit();
+    void this.persist();
+  }
+  cityQuestStatus(id: string): 'locked' | 'available' | 'active' | 'ready' | 'completed' {
+    return this.campaign ? contractStatus(this.campaign, id) : 'locked';
+  }
+  openQuestBoard(npcId?: string) {
+    this.view.questGiver = npcId && this.nearQuestGiver(npcId) ? npcId : null;
+    this.openPanel('contracts');
+  }
+  private nearQuestGiver(id: string) {
+    return (
+      this.view.phase === 'town' &&
+      this.world.objects.some(
+        (o) =>
+          o.type === 'npc' &&
+          o.data === id &&
+          Math.hypot(o.x - this.world.player.x, o.y - this.world.player.y) < 100,
+      )
+    );
+  }
+  acceptQuest(id: string) {
+    const c = this.campaign,
+      q = CITY_QUESTS.find((q) => q.id === id);
+    if (!c || !q || this.cityQuestStatus(id) !== 'available') return;
+    if (this.view.cityId !== q.cityId || !this.nearQuestGiver(q.giver)) {
+      this.toast(
+        txt(
+          'Sprich mit dem Auftraggeber in seiner Stadt, um diesen Auftrag anzunehmen.',
+          'Speak to the giver in their city to accept this contract.',
+        ),
+      );
+      return;
+    }
+    if (!acceptContract(c, id)) return;
+    this.dirty++;
+    this.toast(txt(`Angenommen: ${q.name.de}`, `Accepted: ${q.name.en}`), 'success');
+    void this.persist();
+  }
+  claimQuest(id: string, choiceId?: string) {
+    const c = this.campaign,
+      q = CITY_QUESTS.find((q) => q.id === id);
+    if (
+      !c ||
+      !q ||
+      this.cityQuestStatus(id) !== 'ready' ||
+      this.view.cityId !== q.cityId ||
+      !this.nearQuestGiver(q.giver)
+    )
+      return;
+    const settle = (selected?: string) => {
+      if (this.cityQuestStatus(id) !== 'ready') return;
+      const choice = q.choices?.find((v) => v.id === selected);
+      if (q.choices?.length && !choice) return;
+      const settled = settleContract(c, id, selected);
+      if (!settled) return;
+      if (q.reward.itemId) this.addItem(q.reward.itemId);
+      if (choice) this.toast(choice.consequence);
+      this.dirty++;
+      this.closePanel();
+      this.toast(txt(`Abgegeben: ${q.name.de}`, `Completed: ${q.name.en}`), 'success');
+      this.openQuestBoard(q.giver);
+      void this.persist();
+    };
+    if (choiceId || !q.choices?.length) {
+      if (!choiceId)
+        this.showDialog(
+          {
+            speaker: NPCS.find((n) => n.id === q.giver)!.name,
+            title: q.name,
+            lines: q.conclusion,
+            choices: [{ id: 'claim', label: txt('Auftrag abschließen', 'Complete contract') }],
+          },
+          () => settle(),
+        );
+      else settle(choiceId);
+    } else
+      this.showDialog(
+        {
+          speaker: NPCS.find((n) => n.id === q.giver)!.name,
+          title: q.name,
+          lines: q.conclusion,
+          choices: q.choices.map((v) => ({ id: v.id, label: v.label })),
+        },
+        (selected) => settle(selected),
+      );
+  }
+  private applyNarrativeChoice(key: string, choice: NarrativeChoice) {
+    if (applyChoice(this.campaign!, key, choice)) this.toast(choice.consequence);
+  }
+  private bankCityQuests() {
+    bankContracts(this.campaign!);
+  }
+
+  private resetRunQuests(death = false) {
+    const c = this.campaign!;
+    if (death) rollbackContracts(c);
+    for (const [id, state] of Object.entries(c.questProgress))
+      if (!state.confirmed) {
+        if (c.acceptedQuests?.includes(id)) {
+          if (death) state.count = c.cityQuestBank?.[id] ?? 0;
+        } else delete c.questProgress[id];
+      }
+  }
   returnHub() {
     if (!this.campaign) {
       this.view.phase = 'title';
@@ -381,11 +598,30 @@ export class GameController {
       return;
     }
     const c = this.campaign;
+    if (
+      this.view.phase === 'playing' &&
+      c.world &&
+      (roomAt(this.world, this.world.player.x, this.world.player.y)?.kind !== 'rest' ||
+        this.world.enemies.some(
+          (a) => !a.dead && Math.hypot(a.x - this.world.player.x, a.y - this.world.player.y) < 350,
+        ))
+    ) {
+      this.toast(
+        txt(
+          'Kehre zum sicheren Eingangsraum zurück, um die Expedition mit Beute zu verlassen.',
+          'Return to the safe entry room to leave the expedition with your loot.',
+        ),
+      );
+      return;
+    }
     c.scrap += c.runScrap;
     c.runScrap = 0;
     c.unbanked = [];
-    for (const [id, q] of Object.entries(c.questProgress))
-      if (!q.confirmed) delete c.questProgress[id];
+    this.bankCityQuests();
+    this.resetRunQuests();
+    c.choices.refuge = 'hub';
+    this.view.cityId = null;
+    this.view.questGiver = null;
     this.view.phase = 'hub';
     this.view.paused = false;
     this.view.panel = 'none';
@@ -403,10 +639,15 @@ export class GameController {
     c.runScrap = 0;
     c.unbanked = [];
     const cls = CLASSES.find((k) => k.id === c.classId) ?? CLASSES[0];
-    c.world = generateWorld(floor, hashSeed(`${c.createdAt}:${c.run}:${floor}`), cls.id);
+    const route = ['dangerous', 'exploration'].includes(c.choices.route)
+      ? (c.choices.route as 'dangerous' | 'exploration')
+      : 'balanced';
+    c.world = generateWorld(floor, hashSeed(`${c.createdAt}:${c.run}:${floor}`), cls.id, route);
     c.world.player.hp = effectiveStats(c).maxHp;
     this.attach(c);
     this.view.phase = 'playing';
+    this.view.cityId = null;
+    this.view.questGiver = null;
     this.view.paused = false;
     this.view.panel = 'none';
     this.view.dialog = null;
@@ -419,6 +660,24 @@ export class GameController {
         `Floor ${floor}: ${FLOORS[floor - 1].name.en}`,
       ),
     );
+    const chapter = STORY_CHAPTERS.find((s) => s.floor === floor);
+    if (chapter && !c.choices[`arrival-${floor}`]) {
+      this.showDialog(
+        {
+          speaker: 'NIX',
+          title: chapter.title,
+          lines: chapter.arrival,
+          choices: [{ id: 'continue', label: txt('Die Spur aufnehmen', 'Follow the trail') }],
+        },
+        () => {
+          c.choices[`arrival-${floor}`] = 'read';
+          this.closePanel();
+        },
+      );
+    } else {
+      const mod = RUN_MODIFIERS.find((m) => m.id === this.world.modifiers?.[0]);
+      if (mod) this.toast(mod.name);
+    }
   }
   retry() {
     const c = this.campaign;
@@ -439,7 +698,7 @@ export class GameController {
   }
   openPanel(panel: Panel) {
     this.view.panel = panel;
-    this.view.paused = panel !== 'none' && this.view.phase === 'playing';
+    this.view.paused = panel !== 'none' && ['playing', 'town'].includes(this.view.phase);
     this.input.attacking = false;
     this.input.moveX = this.input.moveY = 0;
     this.emit();
@@ -467,7 +726,7 @@ export class GameController {
   step(deltaMs: number) {
     if (
       this.view.renderer.status !== 'ready' ||
-      this.view.phase !== 'playing' ||
+      !['playing', 'town'].includes(this.view.phase) ||
       this.view.paused ||
       !this.simulation
     )
@@ -477,7 +736,7 @@ export class GameController {
     while (this.accumulator >= 1 / 60 && ticks++ < 6) {
       this.simulation.step(1 / 60, this.input);
       this.accumulator -= 1 / 60;
-      if (this.view.phase !== 'playing') break;
+      if (!['playing', 'town'].includes(this.view.phase) || this.view.paused) break;
     }
     this.publishClock += deltaMs;
     this.saveClock += deltaMs;
@@ -518,7 +777,12 @@ export class GameController {
         ),
       );
   }
-  private progress(objective: QuestDef['objective'], amount = 1, npc?: string) {
+  private progress(
+    objective: QuestDef['objective'],
+    amount = 1,
+    npc?: string,
+    storyTerminal = false,
+  ) {
     const c = this.campaign;
     if (!c) return;
     for (const q of QUESTS.filter(
@@ -543,14 +807,29 @@ export class GameController {
           txt(`Ziel erreicht: ${q.name.de}`, `Objective complete: ${q.name.en}`),
           'success',
         );
-        if (this.view.phase === 'hub') {
+        if (this.view.phase === 'hub' || this.view.phase === 'town') {
           c.questProgress[q.id].confirmed = true;
           c.marks += q.reward;
           if (q.category === 'relationship') break;
         }
       }
     }
+    if (this.view.phase === 'playing' || this.view.phase === 'town')
+      for (const q of progressContracts(c, {
+        objective,
+        amount,
+        floor: this.world.floor,
+        town: this.view.phase === 'town',
+        cityId: this.view.cityId,
+        npc,
+        storyTerminal,
+      }))
+        this.toast(
+          txt(`Rückkehr zum Auftraggeber: ${q.name.de}`, `Return to the giver: ${q.name.en}`),
+          'success',
+        );
   }
+
   private onKill(a: Actor) {
     const c = this.campaign;
     if (!c) return;
@@ -559,49 +838,52 @@ export class GameController {
     c.discovered = Array.from(new Set(c.discovered));
     c.xp +=
       a.type === 'boss'
-        ? 90
+        ? 75
         : a.type === 'guardian' || a.type === 'hunt'
-          ? 50
+          ? 40
           : a.type === 'elite'
-            ? 25
-            : 12;
+            ? 18
+            : 8;
     c.runScrap += Math.round(
-      (a.type === 'mob' ? 5 : 15) * (1 + (this.simulation?.stats.gold ?? 0)),
+      (a.type === 'mob' ? 5 : 15) *
+        (1 + (this.simulation?.stats.gold ?? 0)) *
+        (this.world.route === 'dangerous' ? 1.35 : 1),
     );
     this.progress('kills');
     while (c.xp >= c.level * 60 && c.level < 20) {
       c.xp -= c.level * 60;
       c.level++;
       this.simulation!.recalculate();
-      this.world.player.hp = Math.min(this.world.player.maxHp, this.world.player.hp + 30);
+      this.world.player.hp = Math.min(
+        this.world.player.maxHp,
+        this.world.player.hp + this.world.player.maxHp * 0.12,
+      );
       this.toast(
         txt(`Level ${c.level} · Talentpunkt erhalten`, `Level ${c.level} · Talent point earned`),
         'success',
       );
     }
     const f = FLOORS[this.world.floor - 1];
+    const bossDef = ALL_BOSSES.find((b) => b.id === a.defId);
     let unique: string | undefined;
     if (a.type === 'boss') {
       this.world.bossKilled = true;
       this.progress('boss');
-      unique = f.boss.unique;
+      unique = bossDef?.unique ?? f.boss.unique;
     }
     if (a.type === 'guardian') {
       this.world.guardianKilled = true;
-      unique = f.minibosses[0].unique;
+      unique = bossDef?.unique ?? f.minibosses[0].unique;
     }
     if (a.type === 'hunt') {
       this.world.huntKilled = true;
       this.progress('hunt');
-      unique = f.minibosses[1].unique;
+      unique = bossDef?.unique ?? f.minibosses[1].unique;
     }
     if (unique) this.addItem(unique);
     if (['boss', 'guardian', 'hunt'].includes(a.type)) {
       this.toast(
-        txt(
-          `Besiegt: ${[f.boss, ...f.minibosses].find((b) => b.id === a.defId)?.name.de}`,
-          `Defeated: ${[f.boss, ...f.minibosses].find((b) => b.id === a.defId)?.name.en}`,
-        ),
+        txt(`Besiegt: ${bossDef?.name.de ?? a.defId}`, `Defeated: ${bossDef?.name.en ?? a.defId}`),
         'success',
       );
       this.world.objects.push({
@@ -629,8 +911,7 @@ export class GameController {
     c.relics = c.relics.filter((uid) => !lost.has(uid));
     c.runScrap = 0;
     c.unbanked = [];
-    for (const [id, q] of Object.entries(c.questProgress))
-      if (!q.confirmed) delete c.questProgress[id];
+    this.resetRunQuests(true);
     c.world = null;
     this.view.phase = 'dead';
     this.view.paused = true;
@@ -731,11 +1012,10 @@ export class GameController {
       this.addItem(choices[Math.floor(this.simulation!.random() * choices.length)].id);
   }
   interact() {
-    if (this.view.paused || !this.campaign) return;
+    if (this.view.paused || !this.campaign || !['playing', 'town', 'hub'].includes(this.view.phase))
+      return;
     const p = this.world.player;
-    const obj = this.world.objects
-      .filter((o) => o.active && Math.hypot(o.x - p.x, o.y - p.y) < 85)
-      .sort((a, b) => Math.hypot(a.x - p.x, a.y - p.y) - Math.hypot(b.x - p.x, b.y - p.y))[0];
+    const obj = nearestInteraction(this.world);
     if (!obj) return;
     const room = this.world.rooms.find((r) => r.id === obj.room);
     if (obj.type === 'npc') {
@@ -750,12 +1030,14 @@ export class GameController {
       obj.active = false;
       this.randomLoot();
       if (obj.data === 'boss') this.randomLoot();
-      this.campaign.runScrap += 20;
+      this.campaign.runScrap += this.world.modifiers?.includes('scarcity') ? 35 : 20;
       this.progress('chest');
     }
     if (obj.type === 'fountain') {
-      obj.active = false;
-      p.hp = p.maxHp;
+      obj.active = this.view.phase === 'town';
+      p.hp = this.world.modifiers?.includes('scarcity')
+        ? Math.min(p.maxHp, p.hp + p.maxHp * 0.5)
+        : p.maxHp;
       this.simulation!.resource = this.simulation!.stats.maxResource;
       this.audio.play('heal');
       this.toast(
@@ -764,38 +1046,93 @@ export class GameController {
       );
     }
     if (obj.type === 'terminal') {
-      obj.active = false;
-      this.progress('terminal');
-      this.progress('puzzle');
-      if (obj.data === 'story')
+      if (this.view.phase === 'town') {
+        const city = CITIES.find((s) => s.id === this.view.cityId)!;
+        this.showDialog(
+          {
+            speaker: city.name[this.view.lang],
+            title: txt('Stimmen der Stadt', 'Voices of the city'),
+            lines: city.ambientLines,
+            choices: [{ id: 'continue', label: txt('Weiter erkunden', 'Keep exploring') }],
+          },
+          () => this.closePanel(),
+        );
+        return;
+      }
+      const scene = STORY_CHAPTERS.find((c) => c.floor === this.world.floor)?.scenes.find(
+        (s) => s.id === obj.data,
+      );
+      if (scene) {
+        const c = this.campaign;
+        c.choices[`seen:${scene.id}`] = 'read';
+        const recorded = scene.choices.find((v) => v.id === c.choices[scene.id]);
+        this.showDialog(
+          {
+            speaker: scene.speaker,
+            title: scene.title,
+            lines: [...scene.lines, ...(recorded ? [recorded.consequence] : [])],
+            choices: recorded
+              ? [{ id: 'continue', label: txt('Erinnerung schließen', 'Close memory') }]
+              : scene.choices.map((v) => ({ id: v.id, label: v.label })),
+          },
+          (id) => {
+            const selected = scene.choices.find((v) => v.id === id);
+            if (!recorded && !selected) return;
+            if (selected) this.applyNarrativeChoice(scene.id, selected);
+            obj.active = false;
+            this.progress('terminal', 1, undefined, true);
+            this.closePanel();
+          },
+        );
+      } else if (obj.data === 'story') {
         this.showDialog(
           {
             speaker: 'NIX',
             title: FLOORS[this.world.floor - 1].name,
-            lines: [
-              FLOORS[this.world.floor - 1].story,
-              txt(
-                'Sie nennen es Unterhaltung. Aber diese Stimmen wurden nie gefragt.',
-                'They call it entertainment. But these voices were never asked.',
-              ),
-            ],
+            lines: [FLOORS[this.world.floor - 1].story],
             choices: [{ id: 'continue', label: txt('Fragment archivieren', 'Archive fragment') }],
           },
           () => {
-            this.campaign!.choices[`fragment-${this.world.floor}`] = 'archived';
-            this.campaign!.marks += 1;
+            obj.active = false;
+            this.progress('terminal', 1, undefined, true);
+            const key = `fragment-${this.world.floor}`;
+            if (!this.campaign!.choices[key]) {
+              this.campaign!.choices[key] = 'archived';
+              this.campaign!.marks++;
+            }
             this.closePanel();
           },
         );
-      else
-        this.toast(
-          txt(
-            'Leitung aktiv. Das Archiv wird stabilisiert.',
-            'Conduit active. The archive is stabilizing.',
-          ),
-        );
+      } else {
+        obj.active = false;
+        this.progress('terminal');
+        if (
+          room?.kind === 'puzzle' &&
+          !this.world.objects.some((o) => o.room === room.id && o.type === 'terminal' && o.active)
+        ) {
+          this.progress('puzzle');
+          room.cleared = true;
+          this.toast(
+            txt(
+              'Mechanismus gelöst. Der Wartungsweg ist frei.',
+              'Mechanism solved. The maintenance route is open.',
+            ),
+            'success',
+          );
+        } else
+          this.toast(
+            txt(
+              'Leitung aktiv. Aktiviere die übrigen Leitungen dieses Raumes.',
+              'Conduit active. Activate the remaining conduits in this room.',
+            ),
+          );
+      }
     }
     if (obj.type === 'shrine') {
+      if (this.view.phase === 'town') {
+        if (obj.data === 'shop' || obj.data === 'craft') this.openPanel(obj.data);
+        return;
+      }
       if (obj.data === 'hunt' && room) {
         obj.active = false;
         this.simulation!.spawnRoom(room);
@@ -839,6 +1176,10 @@ export class GameController {
         );
     }
     if (obj.type === 'exit') {
+      if (this.view.phase === 'town') {
+        this.leaveCity();
+        return;
+      }
       if (!this.world.bossKilled || !this.world.guardianKilled) {
         this.toast(
           txt(
@@ -898,6 +1239,10 @@ export class GameController {
     c.runScrap = 0;
     c.unbanked = [];
     c.world = null;
+    this.bankCityQuests();
+    c.choices[`aftermath-${floor}`] = 'read';
+    if (floor === 10) c.choices.lea = 'rescued';
+    const chapter = STORY_CHAPTERS.find((s) => s.floor === floor);
     this.dirty++;
     if (floor === 12) {
       this.showDialog(
@@ -905,6 +1250,8 @@ export class GameController {
           speaker: 'NIX',
           title: txt('Wem gehört morgen?', 'Who owns tomorrow?'),
           lines: [
+            ...(chapter?.aftermath ?? []),
+            ...this.personalAftermath(),
             txt(
               'Die Regie ist still. Zum ersten Mal kannst du entscheiden, ohne dass jemand die Antwort geschnitten hat.',
               'The control room is quiet. For the first time, you can choose without someone editing the answer.',
@@ -937,16 +1284,19 @@ export class GameController {
             `Floor ${floor} abgeschlossen. Story, Beute und ${c.marks} Archivmarken sind gesichert.`,
             `Floor ${floor} complete. Story, loot and ${c.marks} archive marks are secured.`,
           ),
-          FLOORS[floor - 1].story,
+          ...(chapter?.aftermath ?? [FLOORS[floor - 1].story]),
         ],
         choices: [
           { id: 'next', label: txt('Zum nächsten Floor', 'Continue to next floor') },
+          { id: 'town', label: txt('In die Stadt zurückkehren', 'Return to the city') },
           { id: 'hub', label: txt('Zurück zum Zufluchtshub', 'Return to the refuge hub') },
         ],
       },
       (id) => {
         this.closePanel();
         if (id === 'next') this.enterFloor(Math.min(12, floor + 1));
+        else if (id === 'town')
+          this.visitCity([...CITIES].reverse().find((s) => s.unlockFloor <= c.floorUnlocked)!.id);
         else this.returnHub();
       },
     );
@@ -960,6 +1310,7 @@ export class GameController {
   }
   chooseDialog(id: string) {
     if (this.dialogHandler) {
+      if (!this.view.dialog?.choices.some((c) => c.id === id)) return;
       const handler = this.dialogHandler;
       this.dialogHandler = null;
       handler(id);
@@ -970,6 +1321,11 @@ export class GameController {
   npcAvailable(npcId: string) {
     const c = this.campaign;
     if (!c || npcId === 'veyl') return false;
+    if (
+      this.view.phase === 'town' &&
+      CITIES.find((s) => s.id === this.view.cityId)?.npcIds.includes(npcId)
+    )
+      return true;
     const threshold: Record<string, number> = {
       nix: 0,
       tam: 0,
@@ -990,8 +1346,13 @@ export class GameController {
     const c = this.campaign,
       npc = NPCS.find((n) => n.id === npcId);
     if (!c || !npc || !this.npcAvailable(npcId)) return;
+    if (this.view.phase === 'town' && !this.nearQuestGiver(npcId)) return;
     c.discovered = Array.from(new Set([...c.discovered, npcId]));
     const stage = Math.min(npc.lines.length - 1, Math.max(0, c.floorUnlocked - 1));
+    if (this.view.phase === 'town') {
+      this.view.questGiver = npcId;
+      this.progress('talk', 1, npcId);
+    }
     const quest = QUESTS.find(
       (q) =>
         q.category === 'relationship' &&
@@ -1018,9 +1379,17 @@ export class GameController {
             label: txt('Nach dem nächsten Schritt fragen', 'Ask about the next step'),
           },
           { id: 'leave', label: txt('Bis später', 'See you later') },
+          ...(this.view.phase === 'town'
+            ? [{ id: 'contracts', label: txt('Nach Aufträgen fragen', 'Ask about contracts') }]
+            : []),
         ],
       },
       (id) => {
+        if (id === 'contracts') {
+          this.closePanel();
+          this.openQuestBoard(npcId);
+          return;
+        }
         if (id !== 'leave') {
           c.relationships[npc.id] = Math.min(100, (c.relationships[npc.id] ?? 0) + 1);
           this.progress('talk', 1, npc.id);
@@ -1042,6 +1411,7 @@ export class GameController {
     if (!['liberate', 'control', 'negotiate'].includes(id) || !this.campaign) return;
     this.campaign.ending = id;
     this.campaign.choices.ending = id;
+    this.campaign.choices.refuge = 'epilogue';
     this.campaign.world = null;
     this.view.phase = 'ending';
     this.closePanel();
@@ -1049,6 +1419,32 @@ export class GameController {
     void this.persist();
     void this.sync();
     this.emit();
+  }
+  personalAftermath() {
+    const c = this.campaign;
+    if (!c) return [];
+    const union = c.relationships['faction-union'] ?? 50;
+    const sponsors = c.relationships['faction-sponsors'] ?? 50;
+    return [
+      c.choices.lea === 'rescued'
+        ? txt(
+            'Lea lebt. Im Kesselhafen zählt sie nicht Zuschauer, sondern die Menschen, die tatsächlich aus Wagen Sieben heimgekehrt sind.',
+            'Lea is alive. In Boilerhaven she counts the people who actually returned from Carriage Seven, rather than viewers.',
+          )
+        : txt(
+            'Leas Spur bleibt in den ungeschnittenen Aufnahmen. Die Städte führen die Suche weiter, auch wenn deine eigene Expedition endet.',
+            'Lea’s trail remains in the unedited recordings. The cities continue searching even when your own expedition ends.',
+          ),
+      union >= sponsors
+        ? txt(
+            'Die Reparaturteams tragen deine Vereinbarungen in die Städte. Niemand darf erneut aus einem Fluchtweg eine Bewerbung machen.',
+            'The repair crews carry your agreements into the cities. Nobody may turn an escape route into an audition again.',
+          )
+        : txt(
+            'Die Sponsoren unterzeichnen überprüfbare Pflichten. Oris weiß, dass die Städte jetzt ihre eigenen Kopien der Verträge behalten.',
+            'The sponsors sign auditable obligations. Oris knows the cities now retain their own copies of the contracts.',
+          ),
+    ];
   }
   equip(uid: string) {
     const c = this.campaign;
@@ -1085,7 +1481,7 @@ export class GameController {
   }
   moveStash(uid: string, target: 'stash' | 'inventory') {
     const c = this.campaign;
-    if (!c || this.view.phase !== 'hub') return;
+    if (!c || !['hub', 'town'].includes(this.view.phase)) return;
     const source = target === 'stash' ? c.inventory : c.stash,
       destination = target === 'stash' ? c.stash : c.inventory,
       item = source.find((i) => i.uid === uid);
@@ -1112,7 +1508,7 @@ export class GameController {
       item.favorite ||
       Object.values(c.equipment).includes(uid) ||
       c.relics.includes(uid) ||
-      (c.stash.includes(item) && this.view.phase !== 'hub')
+      (c.stash.includes(item) && !['hub', 'town'].includes(this.view.phase))
     )
       return;
     const def = ITEMS.find((d) => d.id === item.defId);
@@ -1155,11 +1551,23 @@ export class GameController {
       .slice(0, 16)
       .map((i) => i.id);
   }
+  shopPrice(id: string) {
+    const base = ITEMS.find((i) => i.id === id)?.price ?? 0;
+    const reputation = this.campaign?.relationships['faction-sponsors'] ?? 50;
+    return Math.ceil(base * (1 - (reputation - 50) / 500));
+  }
+  craftPrice(id: string) {
+    const base = RECIPES.find((i) => i.id === id)?.cost ?? 0;
+    const reputation = this.campaign?.relationships['faction-union'] ?? 50;
+    return Math.ceil(base * (1 - (reputation - 50) / 500));
+  }
   buy(id: string) {
     const c = this.campaign,
       item = ITEMS.find((i) => i.id === id);
-    if (!c || !item || this.view.phase !== 'hub' || !this.view.shop.includes(id)) return;
-    if (c.scrap < item.price) {
+    if (!c || !item || !['hub', 'town'].includes(this.view.phase) || !this.view.shop.includes(id))
+      return;
+    const price = this.shopPrice(id);
+    if (c.scrap < price) {
       this.toast(txt('Nicht genug Schrott.', 'Not enough scrap.'));
       return;
     }
@@ -1167,15 +1575,22 @@ export class GameController {
       this.toast(txt('Rucksack ist voll.', 'Your backpack is full.'));
       return;
     }
-    c.scrap -= item.price;
+    c.scrap -= price;
     this.addItem(id);
     void this.persist();
   }
   craft(id: string) {
     const c = this.campaign,
       recipe = RECIPES.find((r) => r.id === id);
-    if (!c || !recipe || this.view.phase !== 'hub' || recipe.floor > c.floorUnlocked) return;
-    if (c.scrap < recipe.cost || c.inventory.length >= 24) {
+    if (
+      !c ||
+      !recipe ||
+      !['hub', 'town'].includes(this.view.phase) ||
+      recipe.floor > c.floorUnlocked
+    )
+      return;
+    const price = this.craftPrice(id);
+    if (c.scrap < price || c.inventory.length >= 24) {
       this.toast(
         txt(
           'Es fehlt Schrott oder ein freier Rucksackplatz.',
@@ -1184,7 +1599,7 @@ export class GameController {
       );
       return;
     }
-    c.scrap -= recipe.cost;
+    c.scrap -= price;
     this.addItem(recipe.item);
     void this.persist();
   }
@@ -1206,7 +1621,8 @@ export class GameController {
   }
   respec() {
     const c = this.campaign;
-    if (!c || this.view.phase !== 'hub' || !c.talents.length || c.marks < 25) return;
+    if (!c || !['hub', 'town'].includes(this.view.phase) || !c.talents.length || c.marks < 25)
+      return;
     c.marks -= 25;
     c.talents = [];
     this.simulation?.recalculate();
@@ -1477,8 +1893,10 @@ export class GameController {
     if (choice === 'cloud') {
       await saveCampaign(conflict.cloud, true);
       this.attach(conflict.cloud);
-      this.view.phase = conflict.cloud.ending ? 'ending' : conflict.cloud.world ? 'playing' : 'hub';
-      if (!conflict.cloud.world) this.makeHub();
+      this.view.phase = this.savedPhase(conflict.cloud);
+      this.view.cityId = null;
+      this.view.questGiver = null;
+      if (!conflict.cloud.world) this.restoreRefuge();
     } else if (choice === 'copy') {
       const slots = await allSaves(),
         free = [0, 1, 2].find((s) => !slots.some((x) => x.slot === s));
@@ -1495,8 +1913,10 @@ export class GameController {
       await saveCampaign(copy);
       await saveCampaign(conflict.cloud, true);
       this.attach(copy);
-      this.view.phase = copy.ending ? 'ending' : copy.world ? 'playing' : 'hub';
-      if (!copy.world) this.makeHub();
+      this.view.phase = this.savedPhase(copy);
+      this.view.cityId = null;
+      this.view.questGiver = null;
+      if (!copy.world) this.restoreRefuge();
       this.cloudRevisions[free] = 0;
     }
     this.view.account = { ...this.view.account, status: 'local', conflict: undefined };

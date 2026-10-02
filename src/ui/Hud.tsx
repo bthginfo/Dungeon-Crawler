@@ -1,12 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties, PointerEvent } from 'react';
 import { game } from '../game/controller';
-import { CLASSES, FLOORS } from '../content';
+import { CLASSES, FLOORS, NPCS } from '../content';
 import type { AbilityDef, GameView, Lang } from '../game/types';
 import { Button, IconButton, Meter, Portrait } from './common';
 import { Icon } from './icons';
 import type { IconName } from './icons';
 import { label, say, statName, t } from './i18n';
+
+export function getCityMapContacts() {
+  const world = game.world;
+  if (!world.region) return [];
+  return world.objects.flatMap((object) => {
+    const npc = object.type === 'npc' && NPCS.find((n) => n.id === object.data);
+    const room = world.rooms.find((r) => r.id === object.room && r.visited);
+    return npc && room && object.active ? [{ object, npc, room }] : [];
+  });
+}
 
 export function DungeonMap({ lang, large = false }: { lang: Lang; large?: boolean }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -20,6 +30,7 @@ export function DungeonMap({ lang, large = false }: { lang: Lang; large?: boolea
         floor = FLOORS.find((f) => f.index === w.floor);
       const width = canvas.width,
         height = canvas.height;
+      const readableScale = large ? Math.max(1, width / (canvas.clientWidth || width)) : 1;
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = '#131b1b';
       ctx.fillRect(0, 0, width, height);
@@ -29,6 +40,20 @@ export function DungeonMap({ lang, large = false }: { lang: Lang; large?: boolea
         oy = (height - w.height * scale) / 2;
       ctx.strokeStyle = '#34403c';
       ctx.lineWidth = 1;
+      for (const [from, to] of w.edges ?? []) {
+        const a = w.rooms.find((room) => room.id === from && room.visited);
+        const b = w.rooms.find((room) => room.id === to && room.visited);
+        if (!a || !b) continue;
+        const ax = ox + (a.x + a.w / 2) * scale;
+        const ay = oy + (a.y + a.h / 2) * scale;
+        const bx = ox + (b.x + b.w / 2) * scale;
+        const by = oy + (b.y + b.h / 2) * scale;
+        ctx.beginPath();
+        ctx.moveTo(ax, ay);
+        ctx.lineTo(bx, ay);
+        ctx.lineTo(bx, by);
+        ctx.stroke();
+      }
       for (const room of w.rooms) {
         if (!room.visited) continue;
         ctx.fillStyle = room.id === w.roomId ? '#405345' : room.cleared ? '#2b3d34' : '#2b3330';
@@ -60,18 +85,60 @@ export function DungeonMap({ lang, large = false }: { lang: Lang; large?: boolea
             ? '#8ce2b7'
             : object.type === 'fountain'
               ? '#69b8d2'
-              : (floor?.colors.accent ?? '#e5b16b');
-        ctx.fillRect(ox + (object.x / 32) * scale - 1.5, oy + (object.y / 32) * scale - 1.5, 3, 3);
+              : object.type === 'npc'
+                ? '#dfcd92'
+                : object.type === 'shrine'
+                  ? '#e5b16b'
+                  : (floor?.colors.accent ?? '#e5b16b');
+        const size = 4 * readableScale;
+        ctx.fillRect(
+          ox + (object.x / 32) * scale - size / 2,
+          oy + (object.y / 32) * scale - size / 2,
+          size,
+          size,
+        );
+      }
+      if (large && w.region) {
+        const contacts = getCityMapContacts();
+        contacts.forEach(({ object, room }, index) => {
+          const peers = contacts.filter((contact) => contact.room.id === room.id);
+          const slot = peers.findIndex((contact) => contact.object.id === object.id);
+          const cx = ox + (room.x + room.w / 2) * scale;
+          const cy = oy + (room.y + room.h / 2) * scale;
+          const mx = room.district
+            ? cx + (slot - (peers.length - 1) / 2) * 24 * readableScale
+            : cx - 20 * readableScale;
+          const my = room.district
+            ? oy + room.y * scale + 12 * readableScale
+            : cy - 12 * readableScale;
+          ctx.strokeStyle = '#dfcd92';
+          ctx.lineWidth = readableScale;
+          ctx.beginPath();
+          ctx.moveTo(ox + (object.x / 32) * scale, oy + (object.y / 32) * scale);
+          ctx.lineTo(mx, my);
+          ctx.stroke();
+          ctx.fillStyle = '#17271e';
+          ctx.beginPath();
+          ctx.arc(mx, my, 9 * readableScale, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+          ctx.fillStyle = '#f0dfac';
+          ctx.font = `600 ${12 * readableScale}px Inter, sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(String(index + 1), mx, my);
+        });
       }
       ctx.fillStyle = '#f8edd7';
       const x = ox + (w.player.x / 32) * scale,
         y = oy + (w.player.y / 32) * scale;
       ctx.beginPath();
-      ctx.arc(x, y, large ? 4 : 3, 0, Math.PI * 2);
+      ctx.arc(x, y, large ? 4 * readableScale : 3, 0, Math.PI * 2);
       ctx.fill();
       ctx.strokeStyle = '#8ce2b7';
+      ctx.lineWidth = readableScale;
       ctx.beginPath();
-      ctx.arc(x, y, large ? 7 : 5, 0, Math.PI * 2);
+      ctx.arc(x, y, large ? 7 * readableScale : 5, 0, Math.PI * 2);
       ctx.stroke();
     };
     draw();
@@ -94,7 +161,7 @@ export function DungeonMap({ lang, large = false }: { lang: Lang; large?: boolea
   );
 }
 
-function Joystick({ lang }: { lang: Lang }) {
+export function Joystick({ lang }: { lang: Lang }) {
   const root = useRef<HTMLDivElement>(null),
     pointer = useRef<number | null>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -320,15 +387,21 @@ export function Hud({ view, onHelp }: { view: GameView; onHelp: () => void }) {
   const [questCollapsed, setQuestCollapsed] = useState(
     () =>
       typeof window !== 'undefined' &&
-      window.matchMedia('(any-pointer: coarse) and (max-height: 500px)').matches,
+      (window.matchMedia('(max-width: 600px)').matches ||
+        window.matchMedia('(any-pointer: coarse) and (max-height: 500px)').matches),
   );
   useEffect(() => {
+    const narrowScreen = window.matchMedia('(max-width: 600px)');
     const compactLandscape = window.matchMedia('(any-pointer: coarse) and (max-height: 500px)');
     const adapt = () => {
-      if (compactLandscape.matches) setQuestCollapsed(true);
+      if (narrowScreen.matches || compactLandscape.matches) setQuestCollapsed(true);
     };
+    narrowScreen.addEventListener('change', adapt);
     compactLandscape.addEventListener('change', adapt);
-    return () => compactLandscape.removeEventListener('change', adapt);
+    return () => {
+      narrowScreen.removeEventListener('change', adapt);
+      compactLandscape.removeEventListener('change', adapt);
+    };
   }, []);
   const cls = CLASSES.find((def) => def.id === c?.classId) ?? CLASSES[0],
     floor = FLOORS.find((def) => def.index === view.floor);
@@ -438,10 +511,21 @@ export function Hud({ view, onHelp }: { view: GameView; onHelp: () => void }) {
             onClick={() => setQuestCollapsed(!questCollapsed)}
             aria-expanded={!questCollapsed}
             aria-controls="current-objective-details"
+            aria-label={`${say(l, questCollapsed ? 'Ziel anzeigen' : 'Ziel ausblenden', questCollapsed ? 'Show objective' : 'Hide objective')}: ${label(view.quest.name, l)} · ${Math.min(questCount, view.quest.target)} / ${view.quest.target}`}
           >
             <Icon name="target" size={15} />
-            <span>{say(l, 'AKTUELLES ZIEL', 'CURRENT OBJECTIVE')}</span>
-            <span>{questCollapsed ? '+' : '−'}</span>
+            {questCollapsed ? (
+              <span className="quest-compact-copy">
+                <strong>{label(view.quest.name, l)}</strong>
+                <span>
+                  {say(l, 'Ziel', 'Objective')} · {Math.min(questCount, view.quest.target)} /{' '}
+                  {view.quest.target}
+                </span>
+              </span>
+            ) : (
+              <span>{say(l, 'AKTUELLES ZIEL', 'CURRENT OBJECTIVE')}</span>
+            )}
+            <span aria-hidden="true">{questCollapsed ? '+' : '−'}</span>
           </button>
           {!questCollapsed && (
             <div

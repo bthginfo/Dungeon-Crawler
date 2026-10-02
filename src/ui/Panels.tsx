@@ -1,7 +1,17 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import { game } from '../game/controller';
-import { AFFIXES, CLASSES, FLOORS, ITEMS, NPCS, QUESTS, RECIPES, SETS } from '../content';
+import {
+  AFFIXES,
+  CLASSES,
+  FLOORS,
+  ITEMS,
+  NPCS,
+  QUESTS,
+  RECIPES,
+  RUN_MODIFIERS,
+  SETS,
+} from '../content';
 import type {
   AbilityDef,
   Campaign,
@@ -12,7 +22,8 @@ import type {
   Settings,
 } from '../game/types';
 import { Button, Empty, IconButton, ItemIcon, Modal, NpcPortrait, Portrait } from './common';
-import { DungeonMap } from './Hud';
+import { DungeonMap, getCityMapContacts } from './Hud';
+import { CitiesPanel, ContractsPanel, StoryPanel } from './Narrative';
 import { Icon } from './icons';
 import { dateText, label, rarityName, say, statName, statValue, t } from './i18n';
 
@@ -30,6 +41,9 @@ const panels = {
   account: 'cloud',
   slots: 'grid',
   dialog: 'talk',
+  cities: 'map',
+  contracts: 'book',
+  story: 'eye',
 } as const;
 const gearSlots = [
   'weapon',
@@ -301,7 +315,7 @@ function Inventory({ view }: Props) {
                   ? say(l, 'Favorit entfernen', 'Remove favorite')
                   : say(l, 'Als Favorit schützen', 'Protect as favorite')}
               </Button>
-              {view.phase === 'hub' && item.kind !== 'key' && (
+              {['hub', 'town'].includes(view.phase) && item.kind !== 'key' && (
                 <Button
                   icon={source === 'stash' ? 'bag' : 'grid'}
                   disabled={source === 'inventory' && !!equipped}
@@ -367,6 +381,14 @@ function Journal({ view }: Props) {
   const count = progress?.count ?? 0;
   return (
     <>
+      <div className="journal-narrative-links">
+        <Button icon="talk" onClick={() => game.openQuestBoard()}>
+          {say(l, 'Angenommene & angebotene Stadtaufträge', 'Accepted & offered city contracts')}
+        </Button>
+        <Button icon="eye" onClick={() => game.openPanel('story')}>
+          {say(l, 'Chronik & Entscheidungen', 'Chronicle & decisions')}
+        </Button>
+      </div>
       <div className="panel-toolbar">
         <div className="tabs">
           {(['main', 'side', 'relationship'] as const).map((value) => (
@@ -479,7 +501,7 @@ function Journal({ view }: Props) {
                 'Your actions in the dungeon advance objectives. Story objectives and rewards are confirmed automatically; continue relationship quests by talking in the refuge.',
               )}
             </p>
-            {quest.npc && view.phase === 'hub' && (
+            {quest.npc && ['hub', 'town'].includes(view.phase) && (
               <Button icon="talk" onClick={() => game.talk(quest.npc!)}>
                 {say(l, 'Gespräch beginnen', 'Start conversation')}
               </Button>
@@ -777,7 +799,9 @@ function Character({ view }: Props) {
                   </Button>
                   <Button
                     icon="crown"
-                    disabled={view.phase !== 'hub' || c.marks < 25 || !c.talents.length}
+                    disabled={
+                      !['hub', 'town'].includes(view.phase) || c.marks < 25 || !c.talents.length
+                    }
                     onClick={() => {
                       game.respec();
                       setRespecRequested(false);
@@ -791,7 +815,9 @@ function Character({ view }: Props) {
               <Button
                 icon="crown"
                 tone="quiet"
-                disabled={view.phase !== 'hub' || c.marks < 25 || !c.talents.length}
+                disabled={
+                  !['hub', 'town'].includes(view.phase) || c.marks < 25 || !c.talents.length
+                }
                 onClick={() => setRespecRequested(true)}
               >
                 {say(
@@ -801,12 +827,12 @@ function Character({ view }: Props) {
                 )}
               </Button>
             )}
-            {view.phase !== 'hub' && (
+            {!['hub', 'town'].includes(view.phase) && (
               <p className="fine-print">
                 {say(
                   l,
-                  'Talente kannst du in der Zuflucht neu verteilen.',
-                  'Reassign talents in the refuge.',
+                  'Talente kannst du in der Zuflucht oder einer Stadt neu verteilen.',
+                  'Reassign talents in the refuge or a city.',
                 )}
               </p>
             )}
@@ -818,8 +844,8 @@ function Character({ view }: Props) {
           <p className="section-intro">
             {say(
               l,
-              'Ab Stufe 5 wählst du deinen Schwerpunkt. In der Zuflucht kannst du ihn wechseln.',
-              'Choose your specialization from level 5. Change it in the refuge.',
+              'Ab Stufe 5 wählst du deinen Schwerpunkt. In der Zuflucht oder einer Stadt kannst du ihn wechseln.',
+              'Choose your specialization from level 5. Change it in the refuge or a city.',
             )}
           </p>
           <div className="specialization-choices">
@@ -877,13 +903,13 @@ function Market({ view, crafting }: Props & { crafting?: boolean }) {
     ? RECIPES.filter((recipe) => recipe.floor <= c.floorUnlocked).map((recipe) => ({
         id: recipe.id,
         item: itemById.get(recipe.item),
-        price: recipe.cost,
+        price: game.craftPrice(recipe.id),
         title: label(recipe.name, l),
       }))
     : view.shop.map((id) => ({
         id,
         item: itemById.get(id),
-        price: itemById.get(id)?.price ?? 0,
+        price: game.shopPrice(id),
         title: label(itemById.get(id)?.name, l),
       }));
   const row = rows.find((r) => r.id === selected) ?? rows[0];
@@ -952,17 +978,17 @@ function Market({ view, crafting }: Props & { crafting?: boolean }) {
               <Button
                 tone="primary"
                 icon={crafting ? 'anvil' : 'shop'}
-                disabled={c.scrap < row.price || view.phase !== 'hub'}
+                disabled={c.scrap < row.price || !['hub', 'town'].includes(view.phase)}
                 onClick={() => (crafting ? game.craft(row.id) : game.buy(row.item!.id))}
               >
                 {crafting ? t(l, 'make') : t(l, 'buy')} · {row.price} {t(l, 'scrap')}
               </Button>
-              {view.phase !== 'hub' && (
+              {!['hub', 'town'].includes(view.phase) && (
                 <p className="fine-print">
                   {say(
                     l,
-                    'Handel und Herstellung sind in der Zuflucht möglich.',
-                    'Trade and crafting are available in the refuge.',
+                    'Handel und Herstellung sind in der Zuflucht und in bewohnten Städten möglich.',
+                    'Trade and crafting are available in the refuge and inhabited cities.',
                   )}
                 </p>
               )}
@@ -1569,8 +1595,8 @@ function SettingsPanel({ view }: Props) {
                 <small>
                   {say(
                     l,
-                    'Alle Profile enthalten die vollständige Geschichte.',
-                    'Every profile includes the full story.',
+                    'Story erlaubt mehr Fehler. Standard verlangt aktives Ausweichen und Vorbereitung. Herausforderung erhöht den Kampfdruck. Alle Profile enthalten die ganze Geschichte.',
+                    'Story permits more mistakes. Standard requires active dodging and preparation. Challenge increases combat pressure. Every profile includes the full story.',
                   )}
                 </small>
               </span>
@@ -2021,6 +2047,9 @@ export function Panels({
         'codex',
         'map',
         'slots',
+        'cities',
+        'contracts',
+        'story',
       ].includes(panel)}
       className={`panel-${panel}`}
     >
@@ -2042,6 +2071,9 @@ export function Panels({
       )}
       {panel === 'codex' && <Codex view={view} />}
       {panel === 'dialog' && <DialogPanel view={view} />}
+      {panel === 'cities' && <CitiesPanel view={view} />}
+      {panel === 'contracts' && <ContractsPanel view={view} />}
+      {panel === 'story' && <StoryPanel view={view} />}
       {panel === 'map' && (
         <div className="map-panel">
           <DungeonMap lang={l} large />
@@ -2050,34 +2082,96 @@ export function Panels({
               <i className="legend-player" />
               {say(l, 'Du', 'You')}
             </span>
-            <span>
-              <i className="legend-boss" />
-              {say(l, 'Boss', 'Boss')}
-            </span>
-            <span>
-              <i className="legend-guardian" />
-              {say(l, 'Wächter', 'Guardian')}
-            </span>
-            <span>
-              <i className="legend-hunt" />
-              {say(l, 'Jagd', 'Hunt')}
-            </span>
+            {view.phase === 'town' ? (
+              <>
+                <span>
+                  <i className="legend-npc" />
+                  {say(l, 'Bewohner & Auftraggeber', 'Residents & quest givers')}
+                </span>
+                <span>
+                  <i className="legend-services" />
+                  {say(l, 'Markt & Werkstatt', 'Market & workshop')}
+                </span>
+              </>
+            ) : (
+              <>
+                <span>
+                  <i className="legend-boss" />
+                  {say(l, 'Boss', 'Boss')}
+                </span>
+                <span>
+                  <i className="legend-guardian" />
+                  {say(l, 'Wächter', 'Guardian')}
+                </span>
+                <span>
+                  <i className="legend-hunt" />
+                  {say(l, 'Jagd', 'Hunt')}
+                </span>
+              </>
+            )}
             <span>
               <i className="legend-exit" />
-              {say(l, 'Ausgang', 'Exit')}
+              {view.phase === 'town'
+                ? say(l, 'Reisetor', 'Travel gate')
+                : say(l, 'Ausgang', 'Exit')}
             </span>
             <span>
               <i className="legend-fountain" />
-              {say(l, 'Brunnen', 'Fountain')}
+              {view.phase === 'town' ? say(l, 'Klinik', 'Clinic') : say(l, 'Brunnen', 'Fountain')}
             </span>
           </div>
           <p className="fine-print">
-            {say(
-              l,
-              'Nur erkundete Räume werden angezeigt. Der Wächter öffnet den Weg zum Hauptboss. Der Ausgang wird nach dessen Niederlage aktiv.',
-              'Only explored rooms are shown. The guardian opens the way to the main boss. The exit activates after its defeat.',
-            )}
+            {view.phase === 'town'
+              ? say(
+                  l,
+                  'Die Nummern führen zu den Bewohnern unten. Erkunde die Viertel zu Fuß und sprich mit Auftraggebern vor Ort, um Aufträge anzunehmen oder abzugeben. Das Reisetor führt zur Expeditionsvorbereitung.',
+                  'The numbers locate the residents listed below. Explore on foot and speak to quest givers in person to accept or turn in contracts. The travel gate leads to expedition preparation.',
+                )
+              : say(
+                  l,
+                  'Nur erkundete Räume werden angezeigt. Der Wächter öffnet den Weg zum Hauptboss. Der Ausgang wird nach dessen Niederlage aktiv.',
+                  'Only explored rooms are shown. The guardian opens the way to the main boss. The exit activates after its defeat.',
+                )}
           </p>
+          {view.phase === 'town' && (
+            <section className="city-map-directory">
+              <h3>{say(l, 'Menschen & Anlaufstellen', 'People & places')}</h3>
+              <ol className="city-map-contacts">
+                {getCityMapContacts().map(({ object, npc, room }, index) => (
+                  <li key={object.id}>
+                    <span className="contact-map-number">{index + 1}</span>
+                    <div>
+                      <strong>{npc.name}</strong>
+                      <span>
+                        {npc.id === 'nix'
+                          ? say(l, 'Folgt dir', 'Follows you')
+                          : room.district
+                            ? label(room.name, l)
+                            : say(l, 'Zentralplatz', 'Central square')}
+                      </span>
+                      <small>{label(npc.role, l)}</small>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+          {view.phase === 'playing' && (game.world.modifiers?.length ?? 0) > 0 && (
+            <section className="run-conditions">
+              <h3>{say(l, 'Bedingungen dieser Expedition', 'Conditions of this expedition')}</h3>
+              {RUN_MODIFIERS.filter((modifier) => game.world.modifiers?.includes(modifier.id)).map(
+                (modifier) => (
+                  <div key={modifier.id}>
+                    <Icon name="radio" size={18} />
+                    <div>
+                      <strong>{label(modifier.name, l)}</strong>
+                      <p>{label(modifier.description, l)}</p>
+                    </div>
+                  </div>
+                ),
+              )}
+            </section>
+          )}
         </div>
       )}
     </Modal>

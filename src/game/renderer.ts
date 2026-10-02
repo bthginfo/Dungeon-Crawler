@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { CLASSES, FLOORS } from '../content';
+import { CLASSES, FLOORS, ALL_BOSSES, CITIES, NPCS, CITY_QUESTS } from '../content';
 import { game } from './controller';
 import type { Actor, GameView, WorldData, WorldObject } from './types';
 import assetData from './assets-manifest.json';
@@ -87,6 +87,7 @@ class BroadcastScene extends Phaser.Scene {
   private definitions = new Map<string, { sprite: string; color: string }>();
   private disposeListeners: (() => void)[] = [];
   private lastPhase = '';
+  private lastLang = '';
   private lastHealth = -1;
   private lastTime = 0;
   private assetsFailed = false;
@@ -195,10 +196,10 @@ class BroadcastScene extends Phaser.Scene {
       if (event.code === (view.settings.bindings.pause ?? 'Escape')) {
         event.preventDefault();
         if (view.panel !== 'none') game.closePanel();
-        else if (view.phase === 'playing') game.pause(!view.paused);
+        else if (['playing', 'town'].includes(view.phase)) game.pause(!view.paused);
         return;
       }
-      if (view.phase !== 'playing' || view.panel !== 'none' || view.paused) return;
+      if (!['playing', 'town'].includes(view.phase) || view.panel !== 'none' || view.paused) return;
       const panelActions = ['inventory', 'journal', 'map', 'character'] as const;
       const panelAction = panelActions.find(
         (action) =>
@@ -247,7 +248,7 @@ class BroadcastScene extends Phaser.Scene {
       this.keyboardUsed = false;
       game.input.moveX = game.input.moveY = 0;
       game.input.attacking = false;
-      if (game.getSnapshot().phase === 'playing') game.pause(true);
+      if (['playing', 'town'].includes(game.getSnapshot().phase)) game.pause(true);
     };
     const visibility = () => {
       if (document.hidden) reset();
@@ -256,7 +257,19 @@ class BroadcastScene extends Phaser.Scene {
     const pointerDown = (event: PointerEvent) => {
       if (event.pointerType === 'touch' || event.button !== 0) return;
       const view = game.getSnapshot();
-      if (view.phase !== 'playing' || view.panel !== 'none' || view.paused) return;
+      if (!['playing', 'town'].includes(view.phase) || view.panel !== 'none' || view.paused) return;
+      if (view.phase === 'town') {
+        this.updatePointer(event);
+        if (
+          game.world.objects.some(
+            (o) =>
+              Math.hypot(o.x - game.input.aimX, o.y - game.input.aimY) < 55 &&
+              Math.hypot(o.x - game.world.player.x, o.y - game.world.player.y) < 85,
+          )
+        )
+          game.requestAction('interact');
+        return;
+      }
       this.pointerHeld = true;
       this.pointerAim = true;
       this.updatePointer(event);
@@ -381,7 +394,10 @@ class BroadcastScene extends Phaser.Scene {
     this.particleViews.clear();
     const floor = FLOORS[world.floor - 1] ?? FLOORS[0];
     this.definitions = new Map(
-      [...floor.mobs, ...floor.elites, ...floor.minibosses, floor.boss].map((def) => [def.id, def]),
+      [...FLOORS.flatMap((f) => [...f.mobs, ...f.elites]), ...ALL_BOSSES].map((def) => [
+        def.id,
+        def,
+      ]),
     );
     const ground = world.tiles.map((row, y) =>
       row.map((tile, x) => {
@@ -389,15 +405,22 @@ class BroadcastScene extends Phaser.Scene {
         if (tile > 1)
           return ({ 2: 21, 3: 22, 4: 23, 5: 24, 6: 25 } as Record<number, number>)[tile] ?? 0;
         const n = hash(x, y, world.seed);
-        if (world.floor === 4) return n % 7 === 0 ? 28 : 27;
-        if (world.floor === 5) return n % 9 === 0 ? 17 : 29;
-        if (world.floor === 6 || world.floor === 8)
-          return n % 13 === 0 ? (world.floor === 6 ? 18 : 17) : 28;
-        if (world.floor === 7) return n % 11 === 0 ? 19 : 23;
-        if (world.floor === 1) {
-          const room = world.rooms.find(
-            (r) => x >= r.x && x < r.x + r.w && y >= r.y && y < r.y + r.h,
-          );
+        const room = world.rooms.find(
+          (r) => x >= r.x && x < r.x + r.w && y >= r.y && y < r.y + r.h,
+        );
+        const material = room?.biome ?? world.floor;
+        if (world.region) {
+          if (room?.district === 'market') return n % 8 === 0 ? 17 : 28;
+          if (room?.district === 'archive') return n % 10 === 0 ? 18 : 6;
+          if (world.region === 'lantern')
+            return room?.district === 'residential' ? 28 : n % 9 === 0 ? 28 : 27;
+          return room?.district === 'residential' ? 28 : n % 12 === 0 ? 17 : 3 + (n % 3);
+        }
+        if (material === 4) return n % 7 === 0 ? 28 : 27;
+        if (material === 5) return n % 9 === 0 ? 17 : 29;
+        if (material === 6 || material === 8) return n % 13 === 0 ? (material === 6 ? 18 : 17) : 28;
+        if (material === 7) return n % 11 === 0 ? 19 : 23;
+        if (material === 1) {
           // Service gutters are authored as strips rather than isolated floor noise.
           if (
             room &&
@@ -415,11 +438,10 @@ class BroadcastScene extends Phaser.Scene {
             return 19;
           return n % 8 === 0 ? 1 + (n % 2) : 0;
         }
-        if ([5, 8, 11, 12].includes(world.floor) && n % 9 === 0)
-          return world.floor === 12 ? 20 : 17;
-        if (world.floor === 9) return n % 11 === 0 ? 18 : 3 + (n % 3);
-        if ([7, 11].includes(world.floor)) return 19;
-        return n % 13 === 0 ? 1 + (n % 2) : world.floor === 3 ? 6 : 3;
+        if ([5, 8, 11, 12].includes(material) && n % 9 === 0) return material === 12 ? 20 : 17;
+        if (material === 9) return n % 11 === 0 ? 18 : 3 + (n % 3);
+        if ([7, 11].includes(material)) return 19;
+        return n % 13 === 0 ? 1 + (n % 2) : material === 3 ? 6 : 3;
       }),
     );
     const walls = world.tiles.map((row, y) =>
@@ -461,7 +483,10 @@ class BroadcastScene extends Phaser.Scene {
     this.cameras.main.setZoom(
       Math.max(0.85, Math.min(2.5, this.scale.width / 410, this.scale.height / 450)),
     );
-    for (const room of world.rooms) this.dressRoom(world, room, hex(floor.colors.accent));
+    for (const room of world.rooms) {
+      if (world.region) this.dressDistrict(world, room);
+      else this.dressRoom(world, room, hex(FLOORS[(room.biome ?? world.floor) - 1].colors.accent));
+    }
     this.lastHealth = world.player.hp;
   }
 
@@ -470,6 +495,219 @@ class BroadcastScene extends Phaser.Scene {
     if (tint) image.setTint(tint);
     this.decorations.push(image);
     return image;
+  }
+
+  private dressDistrict(world: WorldData, room: WorldData['rooms'][number]) {
+    const city = CITIES.find((c) => c.id === world.region)!;
+    const x = room.x * TILE,
+      y = room.y * TILE,
+      w = room.w * TILE,
+      h = room.h * TILE;
+    const accent = hex(FLOORS[city.materialFloor - 1].colors.accent);
+    const lang = game.getSnapshot().lang;
+    const warm = city.id === 'lantern' ? 0xc2db8b : 0xeab779;
+    const timber = city.id === 'haven' ? 0x725440 : city.id === 'lantern' ? 0x405f49 : 0x756852;
+    // Public streets and the approach to each interactive object stay visibly clear.
+    const clear = (px: number, py: number, radius = 65) =>
+      Math.abs(px - (x + w / 2)) > 64 &&
+      Math.abs(py - (y + h / 2)) > 52 &&
+      !!world.tiles[Math.floor(py / TILE)]?.[Math.floor(px / TILE)] &&
+      !world.objects.some((o) => Math.hypot(o.x - px, o.y - py) < radius);
+    const light = (px: number, py: number, size = 120) => {
+      const flame = this.add
+        .sprite(px, py, 'flame')
+        .setDepth(py + 1)
+        .play('torch-loop');
+      const glow = this.add
+        .image(px, py + 6, 'glow')
+        .setDisplaySize(size, size * 0.9)
+        .setTint(warm)
+        .setAlpha(0.3)
+        .setBlendMode(Phaser.BlendModes.ADD)
+        .setDepth(7100);
+      this.decorations.push(flame, glow);
+      this.animatedDecorations.push(flame);
+    };
+    const bench = (px: number, py: number) => {
+      if (!clear(px, py, 70)) return;
+      const g = this.add.graphics().setDepth(py);
+      g.fillStyle(0x101815, 0.5).fillRect(px - 34, py + 3, 73, 15);
+      g.fillStyle(0x202d27, 1)
+        .fillRect(px - 28, py - 6, 7, 23)
+        .fillRect(px + 21, py - 6, 7, 23);
+      g.fillStyle(timber, 1)
+        .fillRect(px - 36, py - 13, 72, 10)
+        .fillRect(px - 36, py, 72, 7);
+      g.fillStyle(0xb49765, 0.45)
+        .fillRect(px - 34, py - 12, 68, 2)
+        .fillRect(px - 34, py, 68, 2);
+      this.decorations.push(g);
+    };
+    const stall = (px: number, py: number, variant: number) => {
+      if (!clear(px, py, 90)) return;
+      this.decoration('rug', px, py + 22, -4, 1.2, city.id === 'lantern' ? 0x819578 : 0xb2a38b);
+      const g = this.add.graphics().setDepth(py + 2);
+      g.fillStyle(0x0b1512, 0.5).fillRect(px - 48, py - 20, 102, 61);
+      g.fillStyle(0x26372d, 1)
+        .fillRect(px - 43, py - 45, 5, 73)
+        .fillRect(px + 38, py - 45, 5, 73);
+      g.fillStyle(timber, 1).fillRect(px - 47, py - 10, 94, 22);
+      g.fillStyle(0xb89b6c, 0.6).fillRect(px - 47, py - 10, 94, 3);
+      g.fillStyle(
+        city.id === 'lantern' ? 0x65826a : city.id === 'meridian' ? 0x466668 : 0x916f46,
+        1,
+      ).fillRect(px - 51, py - 49, 102, 27);
+      g.fillStyle(0xd1bc86, 0.45);
+      for (let stripe = -45; stripe < 50; stripe += 21) g.fillRect(px + stripe, py - 49, 8, 27);
+      g.fillStyle(0x172820, 1).fillRect(px - 51, py - 23, 102, 4);
+      this.decorations.push(g);
+      const goods = variant % 2 ? 'bookshelf' : city.id === 'lantern' ? 'mushroom' : 'crate';
+      this.decoration(goods, px + 26, py + 19, py + 20, goods === 'mushroom' ? 1.25 : 0.8);
+      this.decoration(variant % 2 ? 'chest' : 'crate', px - 25, py + 25, py + 26, 0.8);
+      light(px + 44, py - 19, 125);
+    };
+    const sign = this.add
+      .text(x + w / 2, y + 25, room.name[lang], {
+        fontFamily: 'Tiny5, monospace',
+        fontSize: '18px',
+        color: '#eee1c8',
+        backgroundColor: '#182320',
+        padding: { x: 12, y: 6 },
+      })
+      .setOrigin(0.5, 0)
+      .setDepth(y + 30);
+    this.decorations.push(sign);
+    if (!room.district) {
+      const square = this.add.graphics().setDepth(-3);
+      square.fillStyle(0x243128, 0.35).fillRect(x + 32, y + 32, w - 64, h - 64);
+      square.lineStyle(3, accent, 0.36).strokeRect(x + 38, y + 38, w - 76, h - 76);
+      square.lineStyle(1, 0xe1caa0, 0.24).strokeRect(x + 48, y + 48, w - 96, h - 96);
+      square.fillStyle(0xd7c08c, 0.1);
+      for (const dx of [-26, 26])
+        for (let dy = 64; dy < h - 40; dy += 32) square.fillRect(x + w / 2 + dx, y + dy, 3, 10);
+      this.decorations.push(square);
+      for (const dx of [68, w - 68]) {
+        stall(x + dx, y + 88, dx === 68 ? 0 : 1);
+        bench(x + dx, y + h - 79);
+        if (clear(x + dx, y + h - 110, 74)) {
+          this.decoration('crate', x + dx - 24, y + h - 128, y + h - 128, 0.85);
+          this.decoration(
+            city.id === 'haven' ? 'furnace' : city.id === 'lantern' ? 'mushroom' : 'clock',
+            x + dx + 26,
+            y + h - 112,
+            y + h - 112,
+            city.id === 'lantern' ? 1.6 : 1.1,
+          );
+        }
+        if (clear(x + (dx === 68 ? 25 : w - 25), y + h / 2 - 78))
+          this.decoration(
+            city.id === 'haven' ? 'pipe' : city.id === 'lantern' ? 'mushroom' : 'clock',
+            x + (dx === 68 ? 25 : w - 25),
+            y + h / 2 - 78,
+            y + h / 2 - 78,
+            city.id === 'lantern' ? 1.9 : 1.2,
+          );
+        light(x + dx, y + h - 62, 150);
+        this.decoration('banner', x + dx, y + 40, y + 40, 0.8, accent);
+      }
+      // Quiet domestic details give the refuge a life beyond its service markers.
+      for (const dx of [42, w - 42]) {
+        this.decoration('bookshelf', x + dx, y + h - 32, y + h - 32, 0.7, 0xc7c0a7);
+        this.decoration('crate', x + dx + (dx === 42 ? 35 : -35), y + h - 27, y + h - 27, 0.65);
+      }
+      return;
+    }
+    const category = {
+      market: lang === 'de' ? 'MARKT / VORRÄTE' : 'MARKET / SUPPLIES',
+      residential: lang === 'de' ? 'WOHNVIERTEL / GEMEINSCHAFT' : 'HOMES / COMMUNITY',
+      archive: lang === 'de' ? 'ARCHIV / ERINNERUNGEN' : 'ARCHIVE / MEMORIES',
+      gate: lang === 'de' ? 'REISETOR / EXPEDITIONEN' : 'TRAVEL GATE / EXPEDITIONS',
+    }[room.district];
+    const plaque = this.add
+      .text(x + w / 2, y + 66, category, {
+        fontFamily: 'Tiny5, monospace',
+        fontSize: '13px',
+        color: '#e5b16b',
+        backgroundColor: '#182320',
+        padding: { x: 8, y: 4 },
+      })
+      .setOrigin(0.5, 0)
+      .setDepth(y + 67);
+    this.decorations.push(plaque);
+    // Facades sit over solid building footprints. Doorways face the public avenue.
+    for (const bx of [room.x + 3, room.x + room.w - 9])
+      for (const by of [room.y + 3, room.y + room.h - 7]) {
+        const px = bx * TILE,
+          py = by * TILE;
+        let rows = 0;
+        while (rows < 7 && !world.tiles[by + rows]?.[bx + 1]) rows++;
+        if (!rows) continue;
+        const roof = this.add.graphics().setDepth(py + rows * TILE - 8);
+        roof.fillStyle(0x0b1512, 0.45).fillRect(px + 8, py + 12, 192, rows * TILE);
+        roof.fillStyle(0x25332c, 1).fillRect(px, py, 192, rows * TILE);
+        roof.fillStyle(timber, 1).fillRect(px - 5, py - 4, 202, Math.max(32, rows * TILE - 28));
+        roof.lineStyle(2, 0xb6a983, 0.2);
+        for (let line = 12; line < rows * TILE - 28; line += 12)
+          roof.lineBetween(px, py + line, px + 192, py + line);
+        roof
+          .fillStyle(0xe8bc6a, 0.55)
+          .fillRect(px + 20, py + rows * TILE - 27, 20, 12)
+          .fillRect(px + 150, py + rows * TILE - 27, 20, 12);
+        this.decorations.push(roof);
+        this.decoration('door', px + 96, py + rows * TILE + 5, py + rows * TILE + 6, 0.9);
+        this.decoration('banner', px + 162, py + rows * TILE - 27, py + rows * TILE, 0.6, accent);
+        const windowGlow = this.add
+          .image(px + 96, py + rows * TILE - 10, 'glow')
+          .setDisplaySize(210, 100)
+          .setTint(warm)
+          .setAlpha(0.16)
+          .setBlendMode(Phaser.BlendModes.ADD)
+          .setDepth(7100);
+        this.decorations.push(windowGlow);
+        if (city.id === 'lantern')
+          this.decoration('mushroom', px + 38, py + 16, py + rows * TILE, 1.8, 0xb6c798);
+      }
+    const prop =
+      room.district === 'market'
+        ? 'crate'
+        : room.district === 'archive'
+          ? 'bookshelf'
+          : room.district === 'gate'
+            ? 'antenna'
+            : city.id === 'lantern'
+              ? 'mushroom'
+              : 'pipe';
+    for (const dx of [64, w - 64])
+      for (const dy of [h / 2 - 35, h / 2 + 110])
+        if (clear(x + dx, y + dy)) this.decoration(prop, x + dx, y + dy, y + dy, 1.25);
+    for (const dx of [w / 2 - 128, w / 2 + 128]) {
+      if (room.district === 'market') {
+        stall(x + dx, y + h / 2 - 100, dx < w / 2 ? 0 : 1);
+        stall(x + dx, y + h / 2 + 125, dx < w / 2 ? 1 : 0);
+      } else if (room.district === 'residential') {
+        bench(x + dx, y + h / 2 - 100);
+        bench(x + dx, y + h / 2 + 105);
+        if (clear(x + dx - 34, y + h / 2 + 135))
+          this.decoration('rug', x + dx - 34, y + h / 2 + 135, -4, 1, 0x9aa78b);
+      } else if (room.district === 'archive') {
+        for (const dy of [h / 2 - 95, h / 2 + 110]) {
+          if (!clear(x + dx, y + dy)) continue;
+          this.decoration('bookshelf', x + dx, y + dy, y + dy, 1.3);
+          this.decoration('chest', x + dx + 35, y + dy + 18, y + dy + 18, 0.8);
+        }
+      } else {
+        if (clear(x + dx, y + h / 2 - 95)) {
+          this.decoration('statue-shield', x + dx, y + h / 2 - 95, y + h / 2 - 95, 1.25);
+          this.decoration('crate', x + dx + 34, y + h / 2 - 66, y + h / 2 - 66, 0.85);
+        }
+        bench(x + dx, y + h / 2 + 108);
+      }
+      light(x + dx, y + h / 2 - 160, 145);
+      light(x + dx, y + h / 2 + 170, 145);
+    }
+    for (const dx of [w / 2 - 64, w / 2 + 64]) {
+      light(x + dx, y + 68, 140);
+    }
   }
 
   private dressRoom(world: WorldData, room: WorldData['rooms'][number], accent: number) {
@@ -492,7 +730,7 @@ class BroadcastScene extends Phaser.Scene {
         'bones',
         'antenna',
         'reactor',
-      ][world.floor - 1] ?? 'camera';
+      ][(room.biome ?? world.floor) - 1] ?? 'camera';
     const propScale = biomeProp === 'banner' ? 0.7 : 1;
     const shadow = this.add.graphics().setDepth(-5);
     shadow.fillStyle(0x07110f, 0.28).fillRect(x, y, w, 14).fillRect(x, y, 9, h);
@@ -769,14 +1007,34 @@ class BroadcastScene extends Phaser.Scene {
     const g = this.effects,
       strong = actor.type === 'boss' || actor.type === 'guardian' || actor.type === 'hunt';
     const color = view.settings.highContrast ? 0xffa374 : COLOR.danger;
-    if (actor.pattern === 'pool') {
+    if (actor.pattern === 'pool' || actor.pattern === 'snare') {
       g.fillStyle(color, 0.1)
         .fillCircle(actor.aimX, actor.aimY, 75)
         .lineStyle(2, color, 0.8)
         .strokeCircle(actor.aimX, actor.aimY, 75);
       return;
     }
-    const radial = /nova|ring|pulse|shock|summon|cleave/.test(actor.pattern);
+    if (actor.pattern === 'eruption') return; // Three target circles are emitted by the simulation.
+    if (actor.pattern === 'cross') {
+      const rotation = actor.phase === 2 ? Math.PI / 4 : 0;
+      for (let arm = 0; arm < 4; arm++) {
+        const a = rotation + (arm * Math.PI) / 2;
+        g.lineStyle(18, color, 0.12).lineBetween(
+          actor.x,
+          actor.y,
+          actor.x + Math.cos(a) * 300,
+          actor.y + Math.sin(a) * 300,
+        );
+        g.lineStyle(2, color, 0.75).lineBetween(
+          actor.x,
+          actor.y,
+          actor.x + Math.cos(a) * 300,
+          actor.y + Math.sin(a) * 300,
+        );
+      }
+      return;
+    }
+    const radial = /nova|ring|orbit|pulse|shock|summon|cleave/.test(actor.pattern);
     if (radial) {
       const radius =
         actor.pattern === 'cleave'
@@ -796,7 +1054,14 @@ class BroadcastScene extends Phaser.Scene {
         dy = actor.aimY - actor.y;
       const angle = Math.atan2(dy || world.player.y - actor.y, dx || world.player.x - actor.x);
       const range = actor.pattern === 'charge' ? 240 : 230,
-        width = actor.pattern === 'burst' ? 0.47 : actor.pattern === 'charge' ? 0.34 : 0.16;
+        width =
+          actor.pattern === 'sweep'
+            ? 1.05
+            : actor.pattern === 'burst'
+              ? 0.47
+              : actor.pattern === 'charge'
+                ? 0.34
+                : 0.16;
       const points: Phaser.Math.Vector2[] = [new Phaser.Math.Vector2(actor.x, actor.y)];
       for (let i = 0; i <= 10; i++) {
         const a = angle - width + (i / 10) * width * 2;
@@ -856,18 +1121,40 @@ class BroadcastScene extends Phaser.Scene {
       }
       const near =
         Math.hypot(world.player.x - object.x, world.player.y - object.y) < 90 &&
-        view.phase === 'playing';
+        ['playing', 'town'].includes(view.phase);
       const isExit = object.type === 'exit';
-      display.image.setAlpha(object.active ? 1 : 0.48).setTint(object.active ? 0xffffff : 0x738177);
+      const openExit = world.bossKilled || Boolean(world.region);
+      const companion = Boolean(world.region) && object.type === 'npc' && object.data === 'nix';
+      display.image
+        .setPosition(object.x, object.y)
+        .setDepth(object.y + 2)
+        .setVisible(!companion)
+        .setAlpha(object.active ? 1 : 0.48)
+        .setTint(object.active ? 0xffffff : 0x738177);
       display.glow
-        .setVisible(object.active && (!isExit || world.bossKilled))
+        .setPosition(object.x, object.y + 2)
+        .setDepth(object.y - 2)
+        .setVisible(!companion && object.active && (!isExit || openExit))
         .setAlpha(
           view.settings.reducedMotion ? 0.23 : 0.2 + Math.sin(time / 600 + object.x) * 0.07,
         );
+      const npc =
+        object.type === 'npc' && world.region ? NPCS.find((n) => n.id === object.data) : null;
+      const offers =
+        npc &&
+        CITY_QUESTS.filter((q) => q.giver === npc.id && q.cityId === world.region).map((q) =>
+          game.cityQuestStatus(q.id),
+        );
+      const marker = offers?.includes('ready') ? '? ' : offers?.includes('available') ? '! ' : '';
       display.label
-        .setText(object.label[view.lang])
-        .setVisible(near && !view.interaction && object.active && (!isExit || world.bossKilled));
-      if (isExit && !world.bossKilled) display.image.setTint(0x695e50).setAlpha(0.6);
+        .setPosition(object.x, object.y - 44)
+        .setText(npc ? marker + npc.name : object.label[view.lang])
+        .setVisible(
+          npc
+            ? Math.hypot(world.player.x - object.x, world.player.y - object.y) < 460
+            : near && !view.interaction && object.active && (!isExit || openExit),
+        );
+      if (isExit && !openExit) display.image.setTint(0x695e50).setAlpha(0.6);
     }
     for (const [id, display] of this.objectViews)
       if (!active.has(id)) {
@@ -1003,7 +1290,7 @@ class BroadcastScene extends Phaser.Scene {
 
   private updateInput(view: GameView) {
     if (
-      view.phase !== 'playing' ||
+      !['playing', 'town'].includes(view.phase) ||
       view.paused ||
       view.panel !== 'none' ||
       editable(document.activeElement)
@@ -1117,7 +1404,10 @@ class BroadcastScene extends Phaser.Scene {
       'aria-label',
       view.lang === 'de' ? 'Dungeon-Spielwelt' : 'Dungeon game world',
     );
-    if (world.id !== this.worldId) this.rebuild(world);
+    if (world.id !== this.worldId || view.lang !== this.lastLang) {
+      this.rebuild(world);
+      this.lastLang = view.lang;
+    }
     this.effects.clear();
     this.bars.clear();
     this.fog.clear();

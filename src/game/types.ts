@@ -1,6 +1,7 @@
 export type Lang = 'de' | 'en';
 export type Text = { de: string; en: string };
-export type Phase = 'title' | 'classselect' | 'hub' | 'playing' | 'dead' | 'ending';
+export type Phase =
+  'title' | 'classselect' | 'origin' | 'hub' | 'town' | 'playing' | 'dead' | 'ending';
 export type Panel =
   | 'none'
   | 'inventory'
@@ -13,6 +14,9 @@ export type Panel =
   | 'craft'
   | 'account'
   | 'slots'
+  | 'cities'
+  | 'contracts'
+  | 'story'
   | 'dialog';
 export type Element =
   | 'physical'
@@ -200,6 +204,8 @@ export interface Room {
   cleared: boolean;
   spawned: boolean;
   name: Text;
+  biome?: number;
+  district?: 'market' | 'residential' | 'archive' | 'gate';
 }
 export interface Status {
   element: Element;
@@ -293,6 +299,11 @@ export interface WorldData {
   attackAnim: number;
   seq?: number;
   contractBoost?: boolean;
+  region?: string;
+  route?: 'balanced' | 'dangerous' | 'exploration';
+  modifiers?: string[];
+  bossIds?: { boss: string; guardian: string; hunt: string };
+  edges?: [string, string][];
   combat?: {
     resource: number;
     shield: number;
@@ -333,6 +344,10 @@ export interface Campaign {
   run: number;
   runScrap: number;
   unbanked: string[];
+  origin?: string;
+  acceptedQuests?: string[];
+  completedCityQuests?: string[];
+  cityQuestBank?: Record<string, number>;
 }
 export interface Settings {
   music: number;
@@ -362,6 +377,8 @@ export interface AccountView {
 }
 export interface GameView {
   renderer: { status: 'loading' | 'ready' | 'error'; progress: number };
+  cityId: string | null;
+  questGiver: string | null;
   phase: Phase;
   panel: Panel;
   paused: boolean;

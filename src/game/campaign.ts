@@ -43,6 +43,9 @@ export function createCampaign(classId: string, name: string, slot = 0): Campaig
     run: 0,
     runScrap: 0,
     unbanked: [],
+    acceptedQuests: [],
+    completedCityQuests: [],
+    cityQuestBank: {},
   };
   const starter =
     ITEMS.find((i) => i.kind === 'gear' && i.slot === 'weapon' && i.floor === 1 && i.rarity < 3) ??

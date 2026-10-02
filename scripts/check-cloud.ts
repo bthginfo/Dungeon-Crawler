@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { createCampaign } from '../src/game/campaign';
+import { acceptContract, progressContracts, bankContracts } from '../src/game/contracts';
 import { generateWorld, TILE } from '../src/game/world';
 import { Simulation } from '../src/game/engine';
 import { DEFAULT_SETTINGS } from '../src/game/save';
@@ -40,6 +41,9 @@ try {
   cookie = registration.response.headers.get('set-cookie')!.split(';')[0];
   check((await request('session')).data.username === name, 'session cookie authenticates');
   const c = createCampaign('breaker', 'Cloud QA', 0);
+  delete c.acceptedQuests;
+  delete c.completedCityQuests;
+  delete c.cityQuestBank;
   const mutationId = randomUUID();
   const first = await request('saves?slot=0', 'PUT', {
     campaign: c,
@@ -64,6 +68,13 @@ try {
     'stale write cannot replace newer save',
   );
   c.scrap = 420;
+  c.origin = 'dispatch';
+  c.choices.motivation = 'truth';
+  c.choices.currentCity = 'haven';
+  c.choices.refuge = 'town';
+  acceptContract(c, 'haven-last-boiler');
+  progressContracts(c, { objective: 'chest', amount: 1, floor: 1, town: false, cityId: null });
+  bankContracts(c);
   c.updatedAt++;
   check(
     (
@@ -76,6 +87,14 @@ try {
     'revision advances atomically',
   );
   check((await request('saves?slot=0')).data.campaign.scrap === 420, 'saved progress loads');
+  const expanded = (await request('saves?slot=0')).data.campaign;
+  check(
+    expanded.origin === 'dispatch' &&
+      expanded.choices.refuge === 'town' &&
+      expanded.acceptedQuests.includes('haven-last-boiler') &&
+      expanded.cityQuestBank['haven-last-boiler'] === 1,
+    'origin, town return and banked city contract survive a cloud roundtrip',
+  );
   check((await request('saves')).data.saves[0].level === 1, 'new devices can discover cloud slots');
   c.world = generateWorld(1, 123, 'breaker');
   const room = c.world.rooms.find((r) => r.kind === 'combat')!;
@@ -104,6 +123,14 @@ try {
   check(
     (await request('saves?slot=0')).data.campaign.world.enemies.length === c.world.enemies.length,
     'active expedition reload retains enemies',
+  );
+  const resumed = (await request('saves?slot=0')).data.campaign.world;
+  check(
+    resumed.route === c.world.route &&
+      JSON.stringify(resumed.bossIds) === JSON.stringify(c.world.bossIds) &&
+      JSON.stringify(resumed.modifiers) === JSON.stringify(c.world.modifiers) &&
+      JSON.stringify(resumed.edges) === JSON.stringify(c.world.edges),
+    'random route, boss cast, modifiers and branch graph survive a cloud roundtrip',
   );
   check(
     (await request('saves?slot=0', 'GET', undefined, '')).response.status === 401,

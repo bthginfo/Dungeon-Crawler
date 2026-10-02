@@ -1,4 +1,4 @@
-import { CLASSES, FLOORS, ITEMS, AFFIXES, SETS, ENCOUNTERS } from '../content';
+import { CLASSES, FLOORS, ITEMS, AFFIXES, SETS, ENCOUNTERS, ALL_BOSSES } from '../content';
 import type {
   AbilityDef,
   Actor,
@@ -39,7 +39,7 @@ export interface Stats {
 }
 const slots = ['weapon', 'offhand', 'head', 'body', 'hands', 'feet', 'amulet', 'talisman'] as const;
 const mobMap = new Map(FLOORS.flatMap((f) => [...f.mobs, ...f.elites]).map((m) => [m.id, m]));
-const bossMap = new Map(FLOORS.flatMap((f) => [...f.minibosses, f.boss]).map((b) => [b.id, b]));
+const bossMap = new Map(ALL_BOSSES.map((b) => [b.id, b]));
 export function effectiveStats(c: Campaign): Stats {
   const cls = CLASSES.find((k) => k.id === c.classId) ?? CLASSES[0];
   const stats: Stats = {
@@ -341,10 +341,10 @@ export class Simulation {
       if (this.invulnerable > 0) return;
       const difficulty =
         this.settings.difficulty === 'story'
-          ? 0.55
+          ? 0.65
           : this.settings.difficulty === 'challenge'
-            ? 1.25
-            : 1;
+            ? 1.8
+            : 1.4;
       let damage =
         power *
         difficulty *
@@ -440,27 +440,67 @@ export class Simulation {
   spawnRoom(room: Room) {
     if (room.spawned) return;
     room.spawned = true;
+    if (this.world.region) {
+      room.cleared = true;
+      return;
+    }
     const f = FLOORS[this.world.floor - 1];
+    const mods = this.world.modifiers ?? [];
     const spawn = (def: MobDef | BossDef, type: Actor['type'], x: number, y: number) => {
       const a = actor(this.uid('enemy'), def.id, type, x, y, room.id);
-      a.hp = a.maxHp = def.hp;
-      a.damage = def.damage;
-      a.speed = 'speed' in def ? def.speed : 78;
+      const hpScale =
+        this.settings.difficulty === 'story'
+          ? 0.85
+          : this.settings.difficulty === 'challenge'
+            ? 1.5
+            : 1.22;
+      const secondary =
+        type !== 'boss' && bossMap.has(def.id) && !f.minibosses.some((b) => b.id === def.id)
+          ? 0.55
+          : 1;
+      a.hp = a.maxHp =
+        def.hp *
+        hpScale *
+        secondary *
+        (mods.includes('warded') ? 1.2 : 1) *
+        (this.world.route === 'dangerous' ? 1.1 : 1);
+      a.damage = def.damage * (this.world.route === 'dangerous' ? 1.12 : 1);
+      a.speed =
+        ('speed' in def ? def.speed : 86) *
+        (this.settings.difficulty === 'story'
+          ? 0.95
+          : this.settings.difficulty === 'challenge'
+            ? 1.22
+            : 1.12) *
+        (mods.includes('stalkers') ? 1.2 : 1);
       a.radius = type === 'boss' ? 23 : type === 'guardian' || type === 'hunt' ? 18 : 11;
+      a.cooldown = 0.35 + this.random() * 0.75;
       this.world.enemies.push(a);
       return a;
     };
     const centerX = (room.x + room.w / 2) * TILE,
       centerY = (room.y + room.h / 2) * TILE;
     if (room.kind === 'boss' || room.kind === 'guardian' || room.kind === 'hunt') {
-      const def = room.kind === 'boss' ? f.boss : f.minibosses[room.kind === 'guardian' ? 0 : 1];
+      const def =
+        bossMap.get(this.world.bossIds?.[room.kind] ?? '') ??
+        (room.kind === 'boss' ? f.boss : f.minibosses[room.kind === 'guardian' ? 0 : 1]);
       spawn(def, room.kind === 'boss' ? 'boss' : room.kind, centerX, centerY - 70);
       this.events.feedback('boss');
     } else if (room.kind === 'combat') {
       const forms = ENCOUNTERS.filter((e) => e.floor === f.index);
       const form = forms[Math.floor(this.random() * forms.length)];
       const ids = [...(form?.mobs ?? [f.mobs[0].id, f.mobs[2].id, f.mobs[4].id])];
-      while (ids.length < 4) ids.push(f.mobs[(ids.length + this.world.floor) % 8].id);
+      const minimum =
+        (this.settings.difficulty === 'story' ? 4 : 5) +
+        (mods.includes('swarm') ? 2 : 0) +
+        (this.world.route === 'dangerous' ? 1 : 0);
+      while (ids.length < minimum) ids.push(f.mobs[Math.floor(this.random() * f.mobs.length)].id);
+      if (mods.includes('invasion')) {
+        const neighbour =
+          FLOORS[Math.max(0, Math.min(11, f.index - 1 + (f.index === 12 ? -1 : 1)))];
+        ids[0] = neighbour.mobs[Math.floor(this.random() * neighbour.mobs.length)].id;
+        ids[ids.length - 1] = neighbour.mobs[Math.floor(this.random() * neighbour.mobs.length)].id;
+      }
       for (let i = 0; i < Math.min(ids.length, 9); i++) {
         const def = mobMap.get(ids[i]) ?? f.mobs[i % 8];
         let x = centerX + Math.cos(i * 2.399) * 120,
@@ -471,7 +511,10 @@ export class Simulation {
         }
         spawn(def, def.elite ? 'elite' : 'mob', x, y);
       }
-      if (Number(room.id.split('-')[1]) === 7)
+      if (
+        this.random() <
+        (mods.includes('veterans') ? 0.6 : this.world.route === 'dangerous' ? 0.3 : 0.16)
+      )
         spawn(f.elites[Math.floor(this.random() * 2)], 'elite', centerX, centerY);
     } else room.cleared = true;
     if (this.world.contractBoost) {
@@ -575,7 +618,7 @@ export class Simulation {
         this.campaign.inventory = this.campaign.inventory.filter((i) => i.uid !== potion.uid);
         this.campaign.unbanked = this.campaign.unbanked.filter((i) => i !== potion.uid);
       }
-      this.cooldowns.heal = 8;
+      this.cooldowns.heal = this.settings.difficulty === 'story' ? 8 : 12;
       return;
     }
     const cls = CLASSES.find((c) => c.id === this.campaign.classId) ?? CLASSES[0];
@@ -715,9 +758,71 @@ export class Simulation {
       this.effect(a.aimX, a.aimY, 'trap', 75, '#d76b58', 3, undefined, a.damage * 0.4).source =
         'enemy';
       if (Math.hypot(a.aimX - p.x, a.aimY - p.y) < 75) this.hit(p, a.damage, element, a.id);
+    } else if (pattern === 'cross') {
+      const rotation = a.phase === 2 ? Math.PI / 4 : 0;
+      for (let arm = 0; arm < 4; arm++)
+        for (let lane = -1; lane <= 1; lane++)
+          this.projectile(
+            a.x,
+            a.y,
+            rotation + (arm * Math.PI) / 2 + lane * 0.08,
+            a.damage * 0.85,
+            element,
+            'enemy',
+            245,
+            '#e88c70',
+          );
+    } else if (pattern === 'sweep') {
+      // Two fans leave a deliberate gap along the aimed centreline.
+      for (let ray = -5; ray <= 5; ray++)
+        if (Math.abs(ray) > 1)
+          this.projectile(
+            a.x,
+            a.y,
+            angle + ray * 0.19,
+            a.damage * 0.8,
+            element,
+            'enemy',
+            260,
+            '#e7aa61',
+          );
+    } else if (pattern === 'orbit') {
+      const rotation = this.world.elapsed * 0.4;
+      for (let ray = 0; ray < 9; ray++)
+        this.projectile(
+          a.x,
+          a.y,
+          rotation + (ray * Math.PI * 2) / 9,
+          a.damage * 0.72,
+          element,
+          'enemy',
+          165 + a.phase * 18,
+          '#dc9a67',
+        );
+    } else if (pattern === 'eruption') {
+      for (const offset of [-100, 0, 100]) {
+        const x = a.aimX + Math.cos(angle + Math.PI / 2) * offset;
+        const y = a.aimY + Math.sin(angle + Math.PI / 2) * offset;
+        if (walkable(this.world, x, y, 1))
+          this.effect(x, y, 'trap', 42, '#d76b58', 2.5, undefined, a.damage * 0.3).source = 'enemy';
+      }
+    } else if (pattern === 'snare') {
+      this.effect(a.aimX, a.aimY, 'trap', 60, '#d76b58', 3.5, undefined, a.damage * 0.25).source =
+        'enemy';
+      for (let ray = -1; ray <= 1; ray++)
+        this.projectile(
+          a.x,
+          a.y,
+          angle + ray * 0.28,
+          a.damage * 0.7,
+          'frost',
+          'enemy',
+          190,
+          '#99c7d2',
+        );
     } else if (pattern === 'summon') {
       const count = this.world.enemies.filter((e) => !e.dead && e.room === a.room).length;
-      if (count < 9) {
+      if (count < 8) {
         const m = FLOORS[this.world.floor - 1].mobs[(a.phase + count) % 8];
         for (let i = 0; i < 2; i++) {
           const e = actor(
@@ -728,14 +833,25 @@ export class Simulation {
             a.y + 40,
             a.room,
           );
-          e.hp = e.maxHp = m.hp * 0.7;
+          e.hp = e.maxHp = m.hp * (this.settings.difficulty === 'story' ? 0.6 : 0.85);
           e.damage = m.damage;
           e.speed = m.speed;
-          this.deferredSpawn.push(e);
+          if (
+            this.world.enemies.length + this.deferredSpawn.length < 180 &&
+            walkable(this.world, e.x, e.y, e.radius)
+          )
+            this.deferredSpawn.push(e);
         }
       }
     } else if (Math.hypot(a.x - p.x, a.y - p.y) < 90) this.hit(p, a.damage, element, a.id);
-    a.cooldown = bossMap.has(a.defId) ? Math.max(1, 2.6 - a.phase * 0.35) : 1.6;
+    a.cooldown =
+      (bossMap.has(a.defId) ? Math.max(0.85, 2.4 - a.phase * 0.35) : 1.3) *
+      (this.world.modifiers?.includes('fury') ? 0.72 : 1) *
+      (this.settings.difficulty === 'challenge'
+        ? 0.8
+        : this.settings.difficulty === 'story'
+          ? 1.25
+          : 1);
     a.tell = 0;
   }
   step(dt: number, input: Input) {
@@ -765,6 +881,28 @@ export class Simulation {
       input.moveX * scale * this.stats.speed * slow * dt,
       input.moveY * scale * this.stats.speed * slow * dt,
     );
+    if (w.region) {
+      const room = roomAt(w, p.x, p.y);
+      if (room && room.id !== w.roomId) {
+        w.roomId = p.room = room.id;
+        if (!room.visited) {
+          room.visited = true;
+          this.events.room(room);
+        }
+      }
+      const d = Math.hypot(w.nix.x - p.x, w.nix.y - p.y);
+      if (d > 450) {
+        w.nix.x = p.x - 30;
+        w.nix.y = p.y;
+      } else if (d > 50)
+        moveActor(w, w.nix, ((p.x - w.nix.x) / d) * 160 * dt, ((p.y - w.nix.y) / d) * 160 * dt);
+      const companion = w.objects.find((o) => o.type === 'npc' && o.data === 'nix');
+      if (companion) {
+        companion.x = w.nix.x;
+        companion.y = w.nix.y;
+      }
+      return;
+    }
     if (terrain === 5 && w.tick % 60 === 0)
       this.hit(p, 5 + this.world.floor, 'fire', 'environment');
     if (terrain === 6) {
@@ -800,6 +938,13 @@ export class Simulation {
       if (current.kind !== 'hunt' && (current.kind !== 'boss' || w.guardianKilled))
         this.spawnRoom(current);
     }
+    if (
+      current &&
+      !current.spawned &&
+      current.kind !== 'hunt' &&
+      (current.kind !== 'boss' || w.guardianKilled)
+    )
+      this.spawnRoom(current);
     if (input.attacking || this.settings.autoAttack) {
       if (this.settings.autoAttack) {
         const target = w.enemies
@@ -822,7 +967,8 @@ export class Simulation {
         }
       if (a.dead || a.type === 'player') continue;
       const distance = Math.hypot(p.x - a.x, p.y - a.y);
-      if (a.room !== w.roomId && distance > 300) continue;
+      if (a.room !== w.roomId && distance > (w.modifiers?.includes('stalkers') ? 1350 : 950))
+        continue;
       const m = mobMap.get(a.defId),
         boss = bossMap.get(a.defId);
       a.phase = boss ? (a.hp / a.maxHp < 0.33 ? 3 : a.hp / a.maxHp < 0.66 ? 2 : 1) : 1;
@@ -884,12 +1030,24 @@ export class Simulation {
         a.pattern = patterns[(Math.floor(w.elapsed / 3) + a.phase) % patterns.length] ?? 'cleave';
         a.aimX = p.x;
         a.aimY = p.y;
-        a.tell = boss ? 1.0 : role === 'ambusher' ? 0.8 : 0.65;
+        a.tell =
+          (boss ? 0.9 : role === 'ambusher' ? 0.7 : 0.55) *
+          (this.settings.difficulty === 'story' ? 1.2 : 1);
+        if (a.pattern === 'eruption')
+          for (const offset of [-100, 0, 100])
+            this.effect(
+              p.x + Math.cos(angle + Math.PI / 2) * offset,
+              p.y + Math.sin(angle + Math.PI / 2) * offset,
+              'telegraph',
+              42,
+              '#db7c61',
+              a.tell,
+            );
         this.effect(
-          a.pattern === 'pool' ? p.x : a.x,
-          a.pattern === 'pool' ? p.y : a.y,
+          ['pool', 'snare'].includes(a.pattern) ? p.x : a.x,
+          ['pool', 'snare'].includes(a.pattern) ? p.y : a.y,
           'telegraph',
-          a.pattern === 'pool' ? 75 : a.pattern === 'cleave' ? 85 : 45,
+          a.pattern === 'pool' ? 75 : a.pattern === 'snare' ? 60 : a.pattern === 'cleave' ? 85 : 45,
           '#db7c61',
           a.tell,
         );
@@ -1001,5 +1159,6 @@ export class Simulation {
     for (const room of w.rooms)
       if (room.spawned && !room.cleared && !w.enemies.some((e) => !e.dead && e.room === room.id))
         room.cleared = true;
+    w.enemies = w.enemies.filter((e) => !e.dead);
   }
 }

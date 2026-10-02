@@ -98,6 +98,8 @@ const world = z
           cleared: z.boolean(),
           spawned: z.boolean(),
           name: text,
+          biome: z.number().int().min(1).max(12).optional(),
+          district: z.enum(['market', 'residential', 'archive', 'gate']).optional(),
         }),
       )
       .max(40),
@@ -164,6 +166,16 @@ const world = z
     attackAnim: number.min(0).max(10),
     seq: z.number().int().min(0).optional(),
     contractBoost: z.boolean().optional(),
+    region: z.string().max(40).optional(),
+    route: z.enum(['balanced', 'dangerous', 'exploration']).optional(),
+    modifiers: z.array(z.string().max(40)).max(3).optional(),
+    bossIds: z
+      .object({ boss: z.string().max(80), guardian: z.string().max(80), hunt: z.string().max(80) })
+      .optional(),
+    edges: z
+      .array(z.tuple([z.string().max(50), z.string().max(50)]))
+      .max(80)
+      .optional(),
     combat: combat.optional(),
   })
   .refine(
@@ -213,6 +225,10 @@ export const campaignSchema = z.object({
   run: z.number().int().min(0),
   runScrap: number.min(0).max(10000000),
   unbanked: z.array(z.string().max(160)).max(224),
+  origin: z.string().max(40).optional(),
+  acceptedQuests: z.array(z.string().max(80)).max(24).optional(),
+  completedCityQuests: z.array(z.string().max(80)).max(24).optional(),
+  cityQuestBank: z.record(z.string().max(80), z.number().int().min(0).max(10000)).optional(),
 });
 export const credentialsSchema = z.object({
   username: z

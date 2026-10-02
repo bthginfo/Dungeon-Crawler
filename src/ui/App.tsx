@@ -8,6 +8,7 @@ import { Button, IconButton, Meter, Modal, NpcPortrait, Portrait } from './commo
 import { label, say, t } from './i18n';
 import { Panels } from './Panels';
 import { Hud } from './Hud';
+import { OriginScreen, TownHud, RouteChoice } from './Narrative';
 
 const panelIcons = {
   inventory: 'bag',
@@ -21,9 +22,13 @@ const panelIcons = {
   account: 'cloud',
   slots: 'grid',
   dialog: 'talk',
+  cities: 'map',
+  contracts: 'book',
+  story: 'eye',
 } as const;
 const subscribe = (callback: () => void) => game.subscribe(callback);
 const snapshot = () => game.getSnapshot();
+type HubOverlay = 'none' | 'floors' | 'crew';
 
 function Language({ lang, compact = false }: { lang: Lang; compact?: boolean }) {
   return (
@@ -455,12 +460,22 @@ function ClassSelect({
   );
 }
 
-function Hub({ view }: { view: GameView }) {
+function Hub({
+  view,
+  overlay,
+  onOverlayChange,
+}: {
+  view: GameView;
+  overlay: HubOverlay;
+  onOverlayChange: (overlay: HubOverlay) => void;
+}) {
   const l = view.lang,
     campaign = view.campaign;
-  const [floorsOpen, setFloorsOpen] = useState(false);
+  const floorsOpen = overlay === 'floors';
+  const setFloorsOpen = (open: boolean) => onOverlayChange(open ? 'floors' : 'none');
   const [selectedFloor, setSelectedFloor] = useState(campaign?.floorUnlocked ?? 1);
-  const [crewOpen, setCrewOpen] = useState(false);
+  const crewOpen = overlay === 'crew';
+  const setCrewOpen = (open: boolean) => onOverlayChange(open ? 'crew' : 'none');
   const cls = CLASSES.find((c) => c.id === campaign?.classId) ?? CLASSES[0];
   if (!campaign || !cls) return null;
   const floor = FLOORS.find((f) => f.index === selectedFloor) ?? FLOORS[0];
@@ -537,6 +552,21 @@ function Hub({ view }: { view: GameView }) {
           <Icon name="arrow" />
         </Button>
         <nav className="hub-services" aria-label={say(l, 'Zufluchtangebote', 'Refuge services')}>
+          <button onClick={() => game.openPanel('cities')}>
+            <Icon name="map" />
+            <span>{say(l, 'Städte besuchen', 'Visit the cities')}</span>
+            <Icon name="arrow" size={16} />
+          </button>
+          <button onClick={() => game.openQuestBoard()}>
+            <Icon name="book" />
+            <span>{t(l, 'contracts')}</span>
+            <Icon name="arrow" size={16} />
+          </button>
+          <button onClick={() => game.openPanel('story')}>
+            <Icon name="eye" />
+            <span>{say(l, 'Geschichte & Entscheidungen', 'Story & decisions')}</span>
+            <Icon name="arrow" size={16} />
+          </button>
           {(['inventory', 'character', 'shop', 'craft', 'journal', 'codex'] as const).map(
             (panel) => (
               <button key={panel} onClick={() => game.openPanel(panel)}>
@@ -655,19 +685,29 @@ function Hub({ view }: { view: GameView }) {
                     <dd>{floor.minibosses.length}</dd>
                   </div>
                   <div>
-                    <dt>{say(l, 'Hauptboss', 'Main boss')}</dt>
-                    <dd>{label(floor.boss.name, l)}</dd>
+                    <dt>{say(l, 'Bossrotation', 'Boss rotation')}</dt>
+                    <dd>
+                      {say(l, 'Wird für diese Expedition bestimmt', 'Selected for this expedition')}
+                    </dd>
                   </div>
                   <div>
                     <dt>{t(l, 'difficulty')}</dt>
                     <dd>{t(l, view.settings.difficulty)}</dd>
                   </div>
                 </dl>
+                <RouteChoice view={view} />
                 <p className="fine-print">
                   {say(
                     l,
-                    'Tod kostet ungesicherten Expeditionsloot. Deine Klasse, abgeschlossene Floors und gesicherte Ausrüstung bleiben erhalten.',
-                    'Death costs unbanked expedition loot. Your class, cleared floors and banked equipment remain.',
+                    'Jeder Start kombiniert Wege, Räume, Gegner und Bossvarianten neu. Die garantierten Storyziele bleiben erreichbar; der direkte Weg ist nicht immer der sichere.',
+                    'Every start recombines routes, rooms, enemies and boss variants. Guaranteed story objectives remain reachable; the direct route is not always the safest.',
+                  )}
+                </p>
+                <p className="fine-print">
+                  {say(
+                    l,
+                    'Tod kostet ungesicherten Expeditionsloot und Auftragfortschritt seit dem letzten sicheren Checkpoint. Deine Klasse, abgeschlossene Floors und gesicherte Ausrüstung bleiben erhalten. Ein vorzeitiger Rückweg ist nur am sicheren Eingang möglich.',
+                    'Death costs unbanked expedition loot and contract progress since the last safe checkpoint. Your class, cleared floors and banked equipment remain. An early retreat is only available at the safe entrance.',
                   )}
                 </p>
               </section>
@@ -797,6 +837,9 @@ function Ending({ view }: { view: GameView }) {
               <Icon name={endingIcon(chosen.id)} size={46} />
               <h2>{label(chosen.name, l)}</h2>
               <p>{label(chosen.epilogue, l)}</p>
+              {game.personalAftermath().map((line, index) => (
+                <p key={index}>{label(line, l)}</p>
+              ))}
             </div>
             <Button tone="primary" icon="back" onClick={() => game.returnHub()}>
               {say(l, 'Epilog beenden & weiter erkunden', 'Finish epilogue & keep exploring')}
@@ -835,6 +878,7 @@ export default function App() {
   const [initialClass, setInitialClass] = useState<string>();
   const [initialSlot, setInitialSlot] = useState<number>();
   const [help, setHelp] = useState(false);
+  const [hubOverlay, setHubOverlay] = useState<HubOverlay>('none');
   const closePanel = useCallback(() => game.closePanel(), []);
   useEffect(() => {
     document.documentElement.lang = view.lang;
@@ -842,10 +886,11 @@ export default function App() {
   }, [view.lang, view.settings.textScale]);
   useEffect(() => {
     const visibility = () => {
-      if (document.hidden && game.getSnapshot().phase === 'playing') game.pause(true);
+      if (document.hidden && ['playing', 'town'].includes(game.getSnapshot().phase))
+        game.pause(true);
     };
     const blur = () => {
-      if (game.getSnapshot().phase === 'playing') game.pause(true);
+      if (['playing', 'town'].includes(game.getSnapshot().phase)) game.pause(true);
     };
     document.addEventListener('visibilitychange', visibility);
     window.addEventListener('blur', blur);
@@ -856,6 +901,7 @@ export default function App() {
   }, []);
   useEffect(() => {
     if (view.phase !== 'title' && view.phase !== 'classselect') setSelecting(false);
+    if (view.phase !== 'hub') setHubOverlay('none');
   }, [view.phase]);
   const onNew = (id?: string, slot?: number) => {
     setInitialClass(id);
@@ -864,7 +910,11 @@ export default function App() {
   };
   const isPanel = view.panel !== 'none';
   const rendererReady = view.renderer.status === 'ready';
-  const overlayOpen = isPanel || help || (view.phase === 'playing' && view.paused);
+  const overlayOpen =
+    isPanel ||
+    help ||
+    (view.phase === 'hub' && hubOverlay !== 'none') ||
+    (['playing', 'town'].includes(view.phase) && view.paused);
   return (
     <div
       className={`app-shell phase-${view.phase} ${view.settings.highContrast ? 'high-contrast' : ''} ${view.settings.reducedMotion ? 'reduced-motion' : ''} ${view.settings.leftHanded ? 'left-handed' : ''}`}
@@ -889,11 +939,15 @@ export default function App() {
             onBack={() => setSelecting(false)}
           />
         )}
-        {view.phase === 'hub' && <Hub view={view} />}
+        {view.phase === 'hub' && (
+          <Hub view={view} overlay={hubOverlay} onOverlayChange={setHubOverlay} />
+        )}
+        {view.phase === 'origin' && <OriginScreen view={view} />}
+        {view.phase === 'town' && <TownHud view={view} />}
         {view.phase === 'playing' && <Hud view={view} onHelp={() => setHelp(true)} />}
         {view.phase === 'dead' && <Death view={view} />}
         {view.phase === 'ending' && <Ending view={view} />}
-        {view.phase === 'playing' && view.paused && !isPanel && (
+        {['playing', 'town'].includes(view.phase) && view.paused && !isPanel && (
           <Modal
             title={t(view.lang, 'pause')}
             subtitle={say(view.lang, 'DIE SENDUNG WARTET.', 'THE BROADCAST CAN WAIT.')}
@@ -916,14 +970,20 @@ export default function App() {
                   </Button>
                 ),
               )}
+              <Button icon="book" onClick={() => game.openQuestBoard()}>
+                {t(view.lang, 'contracts')}
+              </Button>
+              <Button icon="eye" onClick={() => game.openPanel('story')}>
+                {t(view.lang, 'story')}
+              </Button>
               <Button icon="back" onClick={() => game.returnHub()}>
                 {t(view.lang, 'returnHub')}
               </Button>
               <p className="fine-print">
                 {say(
                   view.lang,
-                  'Eine Rückkehr sichert deine aktuelle Beute und deinen Schrott. Unbestätigte Floorziele beginnen bei der nächsten Expedition neu.',
-                  'Returning banks your current loot and scrap. Unconfirmed floor objectives restart on your next expedition.',
+                  'Im Dungeon kannst du nur am sicheren Eingang vorzeitig zurückkehren. Sichere Checkpoints schützen Auftragfortschritt; Tod verliert den ungesicherten Teil. In Städten kannst du jederzeit zur Vorbereitung wechseln.',
+                  'In the dungeon, an early retreat is only possible at the safe entrance. Safe checkpoints protect contract progress; death loses the unbanked portion. In cities, you can return to preparation at any time.',
                 )}
               </p>
             </div>

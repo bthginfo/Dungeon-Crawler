@@ -14,8 +14,15 @@ import {
   RECIPES,
   ROOM_PREFABS,
   SETS,
+  ORIGINS,
+  CITIES,
+  CITY_QUESTS,
+  STORY_CHAPTERS,
+  BOSS_VARIANTS,
+  ALL_BOSSES,
+  RUN_MODIFIERS,
 } from '../src/content';
-import { generateWorld, reachableTiles, TILE, walkable } from '../src/game/world';
+import { generateWorld, generateCity, reachableTiles, TILE, walkable } from '../src/game/world';
 
 const slots = ['weapon', 'offhand', 'head', 'body', 'hands', 'feet', 'amulet', 'talisman'];
 const stats = new Set([
@@ -51,7 +58,20 @@ const effects = new Set([
   'armor',
   'stagger',
 ]);
-const patterns = new Set(['ring', 'line', 'charge', 'burst', 'summon', 'pool', 'cleave']);
+const patterns = new Set([
+  'ring',
+  'line',
+  'charge',
+  'burst',
+  'summon',
+  'pool',
+  'cleave',
+  'cross',
+  'sweep',
+  'orbit',
+  'eruption',
+  'snare',
+]);
 const roles = new Set([
   'chaser',
   'flanker',
@@ -63,7 +83,7 @@ const roles = new Set([
   'ambusher',
 ]);
 
-const uniqueIds = (rows: { id: string }[], name: string) => {
+const uniqueIds = (rows: readonly { id: string }[], name: string) => {
   const ids = rows.map((row) => row.id);
   assert.equal(new Set(ids).size, ids.length, `${name}: duplicate IDs`);
   assert.ok(
@@ -361,6 +381,70 @@ export function auditDefinitions() {
   });
   assert.equal(new Set(Object.values(QUEST_REWARDS)).size, 24);
   NPCS.forEach((n) => assert.ok(n.lines.length >= 12, `${n.id}: incomplete dialogue arc`));
+  assert.equal(ORIGINS.length, 3);
+  assert.equal(CITIES.length, 3);
+  assert.equal(CITY_QUESTS.length, 24);
+  assert.equal(STORY_CHAPTERS.length, 12);
+  assert.equal(BOSS_VARIANTS.length, 24);
+  [ORIGINS, CITIES, CITY_QUESTS, BOSS_VARIANTS, RUN_MODIFIERS].forEach((rows) => {
+    uniqueIds(rows, 'expansion');
+    translations(rows);
+  });
+  translations(STORY_CHAPTERS);
+  ORIGINS.forEach((o) => assert.ok(o.opening.length >= 4, `${o.id}: missing origin`));
+  const cityGraph = Object.fromEntries(CITY_QUESTS.map((q) => [q.id, q.requires ?? []]));
+  validateQuestGraph(cityGraph, new Set(CITY_QUESTS.map((q) => q.id)));
+  CITY_QUESTS.forEach((q) => {
+    const city = CITIES.find((c) => c.id === q.cityId)!;
+    assert.ok(city && city.npcIds.includes(q.giver), `${q.id}: inaccessible giver`);
+    assert.ok(
+      !q.targetNpc || city.npcIds.includes(q.targetNpc),
+      `${q.id}: inaccessible conversation`,
+    );
+    assert.ok(!q.reward.itemId || itemMap.has(q.reward.itemId), `${q.id}: missing reward item`);
+    assert.ok(
+      q.briefing.length && q.conclusion.length && q.target > 0,
+      `${q.id}: incomplete contract`,
+    );
+  });
+  STORY_CHAPTERS.forEach((chapter, i) => {
+    assert.equal(chapter.floor, i + 1);
+    assert.equal(chapter.scenes.length, 3);
+    assert.ok(chapter.arrival.length >= 2 && chapter.aftermath.length >= 1);
+    for (const scene of chapter.scenes) {
+      assert.ok(
+        scene.lines.length >= 1 &&
+          scene.lines.map((p) => p.en).join(' ').length >= 140 &&
+          scene.choices.length >= 2,
+        `${scene.id}: incomplete decision`,
+      );
+      uniqueIds(scene.choices, scene.id);
+    }
+  });
+  uniqueIds(
+    STORY_CHAPTERS.flatMap((c) => c.scenes),
+    'story scenes',
+  );
+  uniqueIds(ALL_BOSSES, 'all boss casts');
+  BOSS_VARIANTS.forEach((b) => {
+    assert.ok(
+      b.patterns.every((p) => patterns.has(p)) && b.patterns.length >= 5,
+      `${b.id}: unsupported pattern`,
+    );
+    assert.ok(itemMap.has(b.unique) && b.hp > 0 && b.damage > 0, `${b.id}: missing reward/stats`);
+  });
+  for (const city of CITIES) {
+    const world = generateCity(city, 973, 'breaker'),
+      reachable = reachableTiles(world);
+    assert.equal(city.districts.length, 4);
+    assert.equal(world.objects.filter((o) => o.type === 'npc').length, city.npcIds.length);
+    for (const o of world.objects)
+      assert.ok(
+        reachable.has(`${Math.floor(o.x / TILE)},${Math.floor(o.y / TILE)}`) &&
+          walkable(world, o.x, o.y),
+        `${city.id}: unreachable ${o.data}`,
+      );
+  }
   return {
     floors: 12,
     mobs: 96,
@@ -379,6 +463,14 @@ export function auditDefinitions() {
     dialogueLines: NPCS.reduce((n, p) => n + p.lines.length, 0),
     prefabs: 336,
     encounters: 240,
+    origins: ORIGINS.length,
+    cities: CITIES.length,
+    cityQuests: CITY_QUESTS.length,
+    storyChapters: STORY_CHAPTERS.length,
+    storyScenes: STORY_CHAPTERS.flatMap((c) => c.scenes).length,
+    storyChoices: STORY_CHAPTERS.flatMap((c) => c.scenes).reduce((n, s) => n + s.choices.length, 0),
+    bossVariants: BOSS_VARIANTS.length,
+    runModifiers: RUN_MODIFIERS.length,
   };
 }
 
@@ -444,6 +536,22 @@ export function auditWorlds(seedsPerFloor = 24) {
           available >= q.target,
           `${q.id}: generated world cannot satisfy ${q.objective} ${q.target}`,
         );
+      }
+      const bossIds = new Set(ALL_BOSSES.map((b) => b.id));
+      assert.ok(Object.values(w.bossIds!).every((id) => bossIds.has(id)));
+      assert.equal(new Set(Object.values(w.bossIds!)).size, 3);
+      for (const q of CITY_QUESTS.filter((q) => q.floor === floor)) {
+        const available =
+          q.objective === 'terminal'
+            ? terminalCount
+            : q.objective === 'chest'
+              ? chestCount
+              : q.objective === 'puzzle'
+                ? puzzleCount
+                : q.objective === 'kills'
+                  ? killCapacity + 3
+                  : Infinity;
+        assert.ok(available >= q.target, `${q.id}: expedition cannot satisfy contract`);
       }
       worlds++;
     }

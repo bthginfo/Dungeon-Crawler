@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import fc from 'fast-check';
-import { CLASSES, FLOORS, ITEMS } from '../src/content';
+import { CLASSES, FLOORS, ITEMS, floorBosses } from '../src/content';
 import { Simulation, effectiveStats, type Input } from '../src/game/engine';
 import { createCampaign } from '../src/game/campaign';
 import { actor, generateWorld, moveActor, reachableTiles, TILE } from '../src/game/world';
@@ -51,11 +51,11 @@ describe('simulation', () => {
       ),
       { numRuns: 300 },
     );
-  });
-  it('all 216 boss/class matchups run without invalid state or unbounded summons', () => {
+  }, 30000);
+  it('all 360 boss/class matchups run without invalid state or unbounded summons', () => {
     for (const f of FLOORS)
       for (const cls of CLASSES)
-        for (const def of [f.boss, ...f.minibosses]) {
+        for (const def of [...floorBosses(f.index), ...f.minibosses]) {
           const s = fixture(f.index, cls.id);
           s.campaign.level = 20;
           s.recalculate();

@@ -4,7 +4,9 @@ Ein originales Browser-Roguelite über eine dystopische Spielshow, gestohlene Er
 
 [Im Browser spielen](https://dungeon-crawler-brown.vercel.app)
 
-Die Kampagne umfasst zwölf Floors, sechs Klassen, Haupt- und Zwischenbosse, Ausrüstung, Relikte, Talentaufbau, Nebenquests und drei Enden. Oberfläche und Inhalte sind auf Deutsch und Englisch verfügbar. Maus/Tastatur, Gamepad sowie Touch-Steuerung in Hoch- und Querformat sind vorgesehen.
+Die Kampagne umfasst zwölf Floors, sechs Klassen, Haupt- und Zwischenbosse, Ausrüstung, Relikte, Talentaufbau, Nebenquests und drei Enden. Drei wählbare Herkunftsgeschichten führen in eine persönliche Suche nach Lea und den verschwundenen Evakuierungszügen. Drei begehbare Städte bieten NPCs, Märkte, Werkstätten, Archive und 24 ausdrücklich anzunehmende Aufträge. Oberfläche und Inhalte sind auf Deutsch und Englisch verfügbar. Maus/Tastatur, Gamepad sowie Touch-Steuerung in Hoch- und Querformat sind vorgesehen.
+
+Expeditionen erzeugen 18–23 Räume mit verzweigten Wegen, Schleifen, unterschiedlichen Grundrissen und regionalen Materialien. Hauptboss, Wächter und Jagdziel werden aus wechselnden Besetzungen gewählt; acht Zufallsmodifikatoren verändern Gegner und Versorgung. Die Vorbereitung bietet ausgewogene, gefährliche und erkundungsorientierte Routen. Storyentscheidungen beeinflussen Fraktionsruf, Preise und den persönlichen Epilog.
 
 ## Lokal starten
 
@@ -44,7 +46,7 @@ Die bereitgestellte Neon-Datenbank verwendet den kostenlosen Tarif. Spielgrafik 
 | Inventar / Journal / Karte / Charakter | I / J / M / K |
 | Pause | Escape |
 
-Tasten, Sprache, Ton, Musik, Kontrast, Bewegungsreduktion, Schwierigkeit und Angriffsassistenz sind einstellbar. Auf Touch-Geräten erscheinen Joystick und getrennte Aktionsflächen. Hub-Rückkehr sichert Beute und Schrott; unbestätigte Floorziele starten bei der nächsten Expedition neu. Ein Tod verliert ungesicherte Beute und Schrott, behält bestätigte Story und gesicherte Ausrüstung.
+Tasten, Sprache, Ton, Musik, Kontrast, Bewegungsreduktion, Schwierigkeit und Angriffsassistenz sind einstellbar. Auf Touch-Geräten erscheinen Joystick und getrennte Aktionsflächen. Die Standardschwierigkeit verlangt Ausweichen und Ressourcenplanung; der Storymodus bleibt auswählbar. In Städten kannst du frei gehen und mit E bzw. der Touch-Interaktion NPCs ansprechen. Sichere Hub-Rückkehr ist aus einem Versorgungsraum ohne nahe Gegner möglich und sichert Beute, Schrott und Stadtauftragsfortschritt. Unbestätigte Floorziele starten bei der nächsten Expedition neu. Ein Tod verliert ungesicherte Beute und Schrott und setzt ungesicherten Auftragsfortschritt zurück; bestätigte Entscheidungen und gesicherte Ausrüstung bleiben erhalten.
 
 ## Architektur und Prüfungen
 
@@ -59,6 +61,8 @@ npm run test:e2e
 ```
 
 `node scripts/check-campaign.mjs` prüft die komplette Checkpointkette mit dem Entwicklungsserver. Dieser Test verwendet absichtlich deterministische tödliche Treffer und misst kein Kampfbalancegefühl. `npx tsx scripts/check-cloud.ts` prüft die konfigurierte API mit temporären Konten, die anschließend gelöscht werden. Ein anderes API-Ziel lässt sich als erstes Argument angeben.
+
+`node scripts/check-offline.mjs` prüft den Produktionspreview auf Port 4173: Offline-Neuladen, eine neue Gast-Expedition, echte Pixelicons im Inventar und den Ausschluss von API-Daten aus dem Cache. Eine veröffentlichte URL lässt sich als erstes Argument angeben. Browserprüfungen laufen sequenziell mit deaktiviertem Ton.
 
 Weitere Details: [Implementierungsstand](docs/IMPLEMENTATION.md), [Assetquellen und Lizenzen](docs/ASSETS.md), [Architektur](docs/ARCHITECTURE.md), [Datenspeicherung](docs/DATA.md) und [ursprünglicher Produktionsplan](IMPLEMENTIERUNGSPLAN.md).
 

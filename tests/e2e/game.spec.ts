@@ -1,6 +1,18 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import type { GameController } from '../../src/game/controller';
 type GameWindow = Window & { __broadcast: GameController };
+async function finishOrigin(page: Page) {
+  await page.getByRole('button', { name: 'Meine Geschichte beginnt hier', exact: true }).click();
+  await page.getByRole('button', { name: /Den Kesselhafen erkunden$/ }).click();
+  await expect(page.getByRole('navigation', { name: 'Stadtmenüs', exact: true })).toBeVisible();
+}
+async function toExpedition(page: Page) {
+  await finishOrigin(page);
+  await page.getByRole('button', { name: 'Zur Vorbereitung in die Zuflucht', exact: true }).click();
+}
+async function closeArrival(page: Page) {
+  await page.getByRole('button', { name: /Die Spur aufnehmen$/ }).click();
+}
 test('desktop campaign starts, pauses, translates and reloads its local save', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
@@ -13,9 +25,12 @@ test('desktop campaign starts, pauses, translates and reloads its local save', a
   );
   await page.getByRole('button', { name: 'Neue Übertragung', exact: true }).click();
   await page.getByRole('button', { name: 'Bereit für die Sendung', exact: true }).click();
+  await toExpedition(page);
   await expect(page.getByRole('button', { name: 'Expedition', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Expedition', exact: true }).click();
+  await expect(page.locator('.toast:not(.toast-error)')).toHaveCount(0);
   await page.getByRole('button', { name: 'Expedition starten', exact: true }).click();
+  await closeArrival(page);
   const startX = await page.evaluate(
     () => (window as unknown as GameWindow).__broadcast.world.player.x,
   );
@@ -72,11 +87,13 @@ test('phone controls accept simultaneous movement and attack', async ({ browser 
       .locator('.class-start-dock')
       .getByRole('button', { name: 'Sendung starten', exact: true })
       .click();
+    await toExpedition(page);
     await page.getByRole('button', { name: 'Expedition', exact: true }).click();
     const launch = page.getByRole('button', { name: 'Expedition starten', exact: true }),
       box = await launch.boundingBox();
     expect(box!.y + box!.height).toBeLessThanOrEqual(844);
     await launch.click();
+    await closeArrival(page);
     await expect(page.locator('.touch-joystick')).toBeVisible();
     await expect(page.locator('.ability-deck')).not.toBeVisible();
     for (const button of await page.locator('.touch-actions button').all()) {
@@ -116,6 +133,65 @@ test('phone controls accept simultaneous movement and attack', async ({ browser 
   } finally {
     await context.close();
   }
+});
+
+test('a city can be walked, a real NPC offers a contract, and acceptance survives reload', async ({
+  page,
+}) => {
+  test.setTimeout(90000);
+  const errors: string[] = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  await page.goto('/');
+  await page.waitForFunction(
+    () => (window as unknown as GameWindow).__broadcast.getSnapshot().renderer.status === 'ready',
+  );
+  await page.evaluate(() =>
+    (window as unknown as GameWindow).__broadcast.updateSettings({ music: 0 }),
+  );
+  await page.getByRole('button', { name: 'Neue Übertragung', exact: true }).click();
+  await page.getByRole('button', { name: 'Bereit für die Sendung', exact: true }).click();
+  await finishOrigin(page);
+  // Follow the square's public avenue into Tam's market district using actual movement controls.
+  await page.keyboard.down('a');
+  await page.waitForFunction(
+    () => (window as unknown as GameWindow).__broadcast.world.player.x < 650,
+  );
+  await page.keyboard.up('a');
+  await page.keyboard.down('w');
+  await page.waitForFunction(
+    () => (window as unknown as GameWindow).__broadcast.world.player.y < 582,
+  );
+  await page.keyboard.up('w');
+  await page.keyboard.down('a');
+  await page.waitForFunction(
+    () => (window as unknown as GameWindow).__broadcast.world.player.x < 575,
+  );
+  await page.keyboard.up('a');
+  await page.keyboard.press('e');
+  await page.getByRole('button', { name: /Nach Aufträgen fragen$/ }).click();
+  await expect(page.getByRole('dialog')).toContainText('Der letzte warme Wagen');
+  await page.getByRole('button', { name: 'Diesen Auftrag annehmen', exact: true }).click();
+  await page.waitForFunction(() =>
+    (window as unknown as GameWindow).__broadcast
+      .getSnapshot()
+      .campaign?.acceptedQuests?.includes('haven-last-boiler'),
+  );
+  await page.waitForFunction(
+    () => (window as unknown as GameWindow).__broadcast.getSnapshot().saveStatus === 'saved',
+  );
+  await page.reload();
+  await page.getByRole('button', { name: /^Fortsetzen/ }).click();
+  await expect(page.getByRole('navigation', { name: 'Stadtmenüs', exact: true })).toBeVisible();
+  const saved = await page.evaluate(() => {
+    const g = (window as unknown as GameWindow).__broadcast;
+    return {
+      origin: g.getSnapshot().campaign?.origin,
+      status: g.cityQuestStatus('haven-last-boiler'),
+      city: g.getSnapshot().cityId,
+    };
+  });
+  expect(saved).toEqual({ origin: 'maintenance', status: 'active', city: 'haven' });
+  expect(errors).toEqual([]);
 });
 
 test('failed graphics loading blocks play and can be retried', async ({ page }) => {
