@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.png binary
+*.woff2 binary
+public/assets/fonts/*-OFL.txt whitespace=-blank-at-eol
+public/assets/licenses/*.txt whitespace=-blank-at-eol

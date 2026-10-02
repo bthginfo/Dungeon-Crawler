@@ -1,0 +1,41 @@
+{
+  "name": "below-the-broadcast",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build && node scripts/build-sw.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "db:migrate": "node --env-file=.env.local scripts/migrate.mjs",
+    "validate": "tsx scripts/validate-content.ts",
+    "format": "prettier --write src server api scripts tests *.ts *.json .github/workflows/*.yml",
+    "format:check": "prettier --check src server api scripts tests *.ts *.json .github/workflows/*.yml"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "1.2.0",
+    "dexie": "4.4.6",
+    "phaser": "4.2.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.4",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "fast-check": "4.10.2",
+    "prettier": "3.9.9",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.2",
+    "vitest": "5.0.3"
+  }
+}

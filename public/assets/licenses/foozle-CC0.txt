@@ -1,0 +1,10 @@
+Lucifer Collection pixel assets
+Commissioned from David (https://x.com/chroma_dave)
+Distributed by Foozle (https://foozlecc.itch.io/)
+License: Creative Commons Zero v1.0 Universal (CC0-1.0)
+https://creativecommons.org/publicdomain/zero/1.0/
+
+The author's pages state: This content is free to use and modify for all projects, including commercial projects. Attribution not required.
+
+Source URLs and archive SHA256 hashes are listed in assets/manifest.json.
+Original broadcast props, NIX and small creature pixel art are project-owned.

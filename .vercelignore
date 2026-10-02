@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.git/
+.vercel/
+.env
+.env.*
+%SystemDrive%/
+assets-source/
+artifacts/
+.agents/
+src/ui/qa/
+test-results/
+playwright-report/
+*.log

@@ -1,0 +1,7653 @@
+{
+  "sprites": {
+    "warrior": {
+      "down-idle": {
+        "path": "/assets/sprites/warrior-down-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 5
+      },
+      "down-walk": {
+        "path": "/assets/sprites/warrior-down-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 8
+      },
+      "down-attack": {
+        "path": "/assets/sprites/warrior-down-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/warrior-down-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-death": {
+        "path": "/assets/sprites/warrior-down-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 5
+      },
+      "left-idle": {
+        "path": "/assets/sprites/warrior-left-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 5
+      },
+      "left-walk": {
+        "path": "/assets/sprites/warrior-left-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 8
+      },
+      "left-attack": {
+        "path": "/assets/sprites/warrior-left-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/warrior-left-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-death": {
+        "path": "/assets/sprites/warrior-left-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 5
+      },
+      "right-idle": {
+        "path": "/assets/sprites/warrior-right-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 5
+      },
+      "right-walk": {
+        "path": "/assets/sprites/warrior-right-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 8
+      },
+      "right-attack": {
+        "path": "/assets/sprites/warrior-right-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/warrior-right-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-death": {
+        "path": "/assets/sprites/warrior-right-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 5
+      },
+      "up-idle": {
+        "path": "/assets/sprites/warrior-up-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 5
+      },
+      "up-walk": {
+        "path": "/assets/sprites/warrior-up-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 8
+      },
+      "up-attack": {
+        "path": "/assets/sprites/warrior-up-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/warrior-up-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-death": {
+        "path": "/assets/sprites/warrior-up-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      }
+    },
+    "sorceress": {
+      "down-idle": {
+        "path": "/assets/sprites/sorceress-down-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "down-walk": {
+        "path": "/assets/sprites/sorceress-down-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "down-attack": {
+        "path": "/assets/sprites/sorceress-down-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 5
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/sorceress-down-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-death": {
+        "path": "/assets/sprites/sorceress-down-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 10
+      },
+      "left-idle": {
+        "path": "/assets/sprites/sorceress-left-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "left-walk": {
+        "path": "/assets/sprites/sorceress-left-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "left-attack": {
+        "path": "/assets/sprites/sorceress-left-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 5
+      },
+      "right-idle": {
+        "path": "/assets/sprites/sorceress-right-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "right-walk": {
+        "path": "/assets/sprites/sorceress-right-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/sorceress-right-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-death": {
+        "path": "/assets/sprites/sorceress-right-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 10
+      },
+      "up-idle": {
+        "path": "/assets/sprites/sorceress-up-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "up-walk": {
+        "path": "/assets/sprites/sorceress-up-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "up-attack": {
+        "path": "/assets/sprites/sorceress-up-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 5
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/sorceress-up-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-death": {
+        "path": "/assets/sprites/sorceress-up-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 10
+      }
+    },
+    "necromancer": {
+      "down-idle": {
+        "path": "/assets/sprites/necromancer-down-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "down-walk": {
+        "path": "/assets/sprites/necromancer-down-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "down-attack": {
+        "path": "/assets/sprites/necromancer-down-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 7
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/necromancer-down-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-death": {
+        "path": "/assets/sprites/necromancer-down-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 11
+      },
+      "left-walk": {
+        "path": "/assets/sprites/necromancer-left-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "left-attack": {
+        "path": "/assets/sprites/necromancer-left-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 7
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/necromancer-left-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-death": {
+        "path": "/assets/sprites/necromancer-left-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 11
+      },
+      "right-idle": {
+        "path": "/assets/sprites/necromancer-right-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "right-walk": {
+        "path": "/assets/sprites/necromancer-right-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "right-attack": {
+        "path": "/assets/sprites/necromancer-right-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 7
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/necromancer-right-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-death": {
+        "path": "/assets/sprites/necromancer-right-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 11
+      },
+      "up-idle": {
+        "path": "/assets/sprites/necromancer-up-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "up-walk": {
+        "path": "/assets/sprites/necromancer-up-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "up-attack": {
+        "path": "/assets/sprites/necromancer-up-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 7
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/necromancer-up-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-death": {
+        "path": "/assets/sprites/necromancer-up-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 11
+      }
+    },
+    "skeleton-hunter": {
+      "down-idle": {
+        "path": "/assets/sprites/skeleton-hunter-down-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "down-walk": {
+        "path": "/assets/sprites/skeleton-hunter-down-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "down-attack": {
+        "path": "/assets/sprites/skeleton-hunter-down-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 12
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/skeleton-hunter-down-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-death": {
+        "path": "/assets/sprites/skeleton-hunter-down-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 8
+      },
+      "left-attack": {
+        "path": "/assets/sprites/skeleton-hunter-left-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 12
+      },
+      "right-idle": {
+        "path": "/assets/sprites/skeleton-hunter-right-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "right-walk": {
+        "path": "/assets/sprites/skeleton-hunter-right-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "right-attack": {
+        "path": "/assets/sprites/skeleton-hunter-right-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 12
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/skeleton-hunter-right-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-death": {
+        "path": "/assets/sprites/skeleton-hunter-right-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 8
+      },
+      "up-idle": {
+        "path": "/assets/sprites/skeleton-hunter-up-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "up-attack": {
+        "path": "/assets/sprites/skeleton-hunter-up-attack.png",
+        "width": 48,
+        "height": 48,
+        "frames": 12
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/skeleton-hunter-up-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-death": {
+        "path": "/assets/sprites/skeleton-hunter-up-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 8
+      }
+    },
+    "skeleton-king": {
+      "down-idle": {
+        "path": "/assets/sprites/skeleton-king-down-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "down-walk": {
+        "path": "/assets/sprites/skeleton-king-down-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 10
+      },
+      "down-attack": {
+        "path": "/assets/sprites/skeleton-king-down-attack.png",
+        "width": 64,
+        "height": 64,
+        "frames": 10
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/skeleton-king-down-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-death": {
+        "path": "/assets/sprites/skeleton-king-down-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 13
+      },
+      "left-idle": {
+        "path": "/assets/sprites/skeleton-king-left-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "left-walk": {
+        "path": "/assets/sprites/skeleton-king-left-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 10
+      },
+      "left-attack": {
+        "path": "/assets/sprites/skeleton-king-left-attack.png",
+        "width": 64,
+        "height": 64,
+        "frames": 10
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/skeleton-king-left-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-death": {
+        "path": "/assets/sprites/skeleton-king-left-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 13
+      },
+      "right-idle": {
+        "path": "/assets/sprites/skeleton-king-right-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "right-walk": {
+        "path": "/assets/sprites/skeleton-king-right-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 10
+      },
+      "right-attack": {
+        "path": "/assets/sprites/skeleton-king-right-attack.png",
+        "width": 64,
+        "height": 64,
+        "frames": 10
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/skeleton-king-right-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-death": {
+        "path": "/assets/sprites/skeleton-king-right-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 13
+      },
+      "up-idle": {
+        "path": "/assets/sprites/skeleton-king-up-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "up-walk": {
+        "path": "/assets/sprites/skeleton-king-up-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 10
+      },
+      "up-attack": {
+        "path": "/assets/sprites/skeleton-king-up-attack.png",
+        "width": 64,
+        "height": 64,
+        "frames": 10
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/skeleton-king-up-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-death": {
+        "path": "/assets/sprites/skeleton-king-up-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 13
+      }
+    },
+    "goblin-beast": {
+      "down-idle": {
+        "path": "/assets/sprites/goblin-beast-down-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "down-walk": {
+        "path": "/assets/sprites/goblin-beast-down-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "down-attack": {
+        "path": "/assets/sprites/goblin-beast-down-attack.png",
+        "width": 64,
+        "height": 64,
+        "frames": 8
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/goblin-beast-down-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-death": {
+        "path": "/assets/sprites/goblin-beast-down-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 10
+      },
+      "left-idle": {
+        "path": "/assets/sprites/goblin-beast-left-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "left-walk": {
+        "path": "/assets/sprites/goblin-beast-left-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "left-attack": {
+        "path": "/assets/sprites/goblin-beast-left-attack.png",
+        "width": 64,
+        "height": 64,
+        "frames": 8
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/goblin-beast-left-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-death": {
+        "path": "/assets/sprites/goblin-beast-left-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 10
+      },
+      "right-idle": {
+        "path": "/assets/sprites/goblin-beast-right-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "right-walk": {
+        "path": "/assets/sprites/goblin-beast-right-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "right-attack": {
+        "path": "/assets/sprites/goblin-beast-right-attack.png",
+        "width": 64,
+        "height": 64,
+        "frames": 8
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/goblin-beast-right-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-death": {
+        "path": "/assets/sprites/goblin-beast-right-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 10
+      },
+      "up-idle": {
+        "path": "/assets/sprites/goblin-beast-up-idle.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "up-walk": {
+        "path": "/assets/sprites/goblin-beast-up-walk.png",
+        "width": 48,
+        "height": 48,
+        "frames": 6
+      },
+      "up-attack": {
+        "path": "/assets/sprites/goblin-beast-up-attack.png",
+        "width": 64,
+        "height": 64,
+        "frames": 8
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/goblin-beast-up-hurt.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-death": {
+        "path": "/assets/sprites/goblin-beast-up-death.png",
+        "width": 48,
+        "height": 48,
+        "frames": 10
+      }
+    },
+    "slime": {
+      "down-idle": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-walk": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-attack": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-death": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-idle": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-walk": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-attack": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-death": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-idle": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-walk": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-attack": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-death": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-idle": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-walk": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-attack": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-death": {
+        "path": "/assets/sprites/slime.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      }
+    },
+    "rat": {
+      "down-idle": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-walk": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-attack": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-death": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-idle": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-walk": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-attack": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-death": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-idle": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-walk": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-attack": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-death": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-idle": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-walk": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-attack": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-death": {
+        "path": "/assets/sprites/rat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      }
+    },
+    "bat": {
+      "down-idle": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-walk": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-attack": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-death": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-idle": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-walk": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-attack": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-death": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-idle": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-walk": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-attack": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-death": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-idle": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-walk": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-attack": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-death": {
+        "path": "/assets/sprites/bat.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      }
+    },
+    "construct": {
+      "down-idle": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-walk": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-attack": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-death": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-idle": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-walk": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-attack": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-death": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-idle": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-walk": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-attack": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-death": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-idle": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-walk": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-attack": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-death": {
+        "path": "/assets/sprites/construct.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      }
+    },
+    "nix": {
+      "down-idle": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-walk": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-attack": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "down-death": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-idle": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-walk": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-attack": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "left-death": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-idle": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-walk": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-attack": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "right-death": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-idle": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-walk": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-attack": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      },
+      "up-death": {
+        "path": "/assets/sprites/nix.png",
+        "width": 48,
+        "height": 48,
+        "frames": 4
+      }
+    },
+    "f01-mob-1": {
+      "down-idle": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f01-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f01-mob-2": {
+      "down-idle": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f01-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f01-mob-3": {
+      "down-idle": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f01-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f01-mob-5": {
+      "down-idle": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f01-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f01-mob-7": {
+      "down-idle": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f01-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f02-mob-1": {
+      "down-idle": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f02-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f02-mob-2": {
+      "down-idle": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f02-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f02-mob-5": {
+      "down-idle": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f02-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f02-mob-6": {
+      "down-idle": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f02-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f02-mob-7": {
+      "down-idle": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f02-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f03-mob-1": {
+      "down-idle": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f03-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f03-mob-3": {
+      "down-idle": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f03-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f03-mob-8": {
+      "down-idle": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f03-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f04-mob-2": {
+      "down-idle": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f04-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f04-mob-3": {
+      "down-idle": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f04-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f04-mob-4": {
+      "down-idle": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f04-mob-4.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f04-mob-5": {
+      "down-idle": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f04-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f05-mob-5": {
+      "down-idle": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f05-mob-5.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f06-mob-1": {
+      "down-idle": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f06-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f06-mob-7": {
+      "down-idle": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f06-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f06-mob-8": {
+      "down-idle": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f06-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f07-mob-2": {
+      "down-idle": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f07-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f07-mob-6": {
+      "down-idle": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f07-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f07-mob-7": {
+      "down-idle": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f07-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f08-mob-1": {
+      "down-idle": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f08-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f08-mob-6": {
+      "down-idle": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f08-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f10-mob-8": {
+      "down-idle": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f10-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f11-mob-1": {
+      "down-idle": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f11-mob-1.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f11-mob-2": {
+      "down-idle": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f11-mob-2.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f11-mob-6": {
+      "down-idle": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f11-mob-6.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f11-mob-7": {
+      "down-idle": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f11-mob-7.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f11-mob-8": {
+      "down-idle": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f11-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f12-mob-3": {
+      "down-idle": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f12-mob-3.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "f12-mob-8": {
+      "down-idle": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-walk": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-attack": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "down-death": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-idle": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-walk": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-attack": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "left-death": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-idle": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-walk": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-attack": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "right-death": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-idle": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-walk": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-attack": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      },
+      "up-death": {
+        "path": "/assets/sprites/f12-mob-8.png",
+        "width": 48,
+        "height": 48,
+        "frames": 2
+      }
+    },
+    "npc-mira": {
+      "down-idle": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-walk": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-attack": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-death": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-idle": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-walk": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-attack": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-death": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-idle": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-walk": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-attack": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-death": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-idle": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-walk": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-attack": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-death": {
+        "path": "/assets/sprites/npc-mira.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      }
+    },
+    "npc-ilya": {
+      "down-idle": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-walk": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-attack": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-death": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-idle": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-walk": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-attack": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-death": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-idle": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-walk": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-attack": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-death": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-idle": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-walk": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-attack": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-death": {
+        "path": "/assets/sprites/npc-ilya.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      }
+    },
+    "npc-tam": {
+      "down-idle": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-walk": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-attack": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-death": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-idle": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-walk": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-attack": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-death": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-idle": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-walk": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-attack": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-death": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-idle": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-walk": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-attack": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-death": {
+        "path": "/assets/sprites/npc-tam.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      }
+    },
+    "npc-zuv": {
+      "down-idle": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-walk": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-attack": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-death": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-idle": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-walk": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-attack": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-death": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-idle": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-walk": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-attack": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-death": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-idle": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-walk": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-attack": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-death": {
+        "path": "/assets/sprites/npc-zuv.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      }
+    },
+    "npc-enno": {
+      "down-idle": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-walk": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-attack": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-death": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-idle": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-walk": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-attack": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-death": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-idle": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-walk": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-attack": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-death": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-idle": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-walk": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-attack": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-death": {
+        "path": "/assets/sprites/npc-enno.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      }
+    },
+    "npc-sera": {
+      "down-idle": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-walk": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-attack": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-death": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-idle": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-walk": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-attack": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-death": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-idle": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-walk": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-attack": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-death": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-idle": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-walk": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-attack": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-death": {
+        "path": "/assets/sprites/npc-sera.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      }
+    },
+    "npc-veyl": {
+      "down-idle": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-walk": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-attack": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-death": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-idle": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-walk": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-attack": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-death": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-idle": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-walk": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-attack": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-death": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-idle": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-walk": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-attack": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-death": {
+        "path": "/assets/sprites/npc-veyl.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      }
+    },
+    "npc-rhea": {
+      "down-idle": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-walk": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-attack": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-death": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-idle": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-walk": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-attack": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-death": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-idle": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-walk": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-attack": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-death": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-idle": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-walk": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-attack": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-death": {
+        "path": "/assets/sprites/npc-rhea.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      }
+    },
+    "npc-oris": {
+      "down-idle": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-walk": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-attack": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-hurt": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "down-death": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-idle": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-walk": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-attack": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-hurt": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "left-death": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-idle": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-walk": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-attack": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-hurt": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "right-death": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-idle": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-walk": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-attack": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-hurt": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      },
+      "up-death": {
+        "path": "/assets/sprites/npc-oris.png",
+        "width": 48,
+        "height": 48,
+        "frames": 1
+      }
+    }
+  },
+  "tiles": {
+    "path": "/assets/world/tiles.png",
+    "width": 32,
+    "height": 32,
+    "columns": 8,
+    "count": 32,
+    "floor": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "wall": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "grate": 17,
+    "carpet": 18,
+    "metal": 19,
+    "circuit": 20,
+    "water": 21,
+    "oil": 22,
+    "ice": 23,
+    "lava": 24,
+    "hazard": 25,
+    "void": 26,
+    "grass": 27,
+    "wood": 28,
+    "forgebrick": 29,
+    "rockwall": 30,
+    "forgewall": 31
+  },
+  "sources": [
+    {
+      "source": "https://foozlecc.itch.io/lucifer-desert-tileset",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6318982"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6318982.zip": "6f89a72773ada4cee837adcac76a49b7538a156fcbd1d941fec22c65fab6f03a"
+      }
+    },
+    {
+      "source": "https://foozlecc.itch.io/lucifer-dungeon-tileset",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6318886"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6318886.zip": "288cabb7ed3f22f7df39e2694e4a9a2ee019b60bd7b597c1d770bb9388f294b1"
+      }
+    },
+    {
+      "source": "https://foozlecc.itch.io/lucifer-effects",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6323278"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6323278.zip": "72bbb1d038cc25148debd45c1b5fe1806fe326ad205d65be39bad67fbe55c2b5"
+      }
+    },
+    {
+      "source": "https://foozlecc.itch.io/lucifer-equipment",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6322961"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6322961.zip": "815df63748dfe54506d1343a470f62f09021318c5bf930d3c60c659b932274cd"
+      }
+    },
+    {
+      "source": "https://foozlecc.itch.io/lucifer-exterior-tileset",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6318843"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6318843.zip": "21ec624a922d0cf60f09bc3be679372dba632c68ec1569b0767bfc2e4114e487"
+      }
+    },
+    {
+      "source": "https://foozlecc.itch.io/lucifer-goblin-beast-boss",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6320850"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6320850.zip": "5f471dc6952f5d6e151f426c1565ca3985a3b6030e4ec2c61acaaf8ab3f2b955"
+      }
+    },
+    {
+      "source": "https://foozlecc.itch.io/lucifer-lava-dungeon-tileset",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6319056"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6319056.zip": "b89b58cd0b5cb76d669085ff5b3690023965cd09f144bbdbdc39e826ae380e9e"
+      }
+    },
+    {
+      "source": "https://foozlecc.itch.io/lucifer-necromancer",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6319203"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6319203.zip": "f16a7a9ba6259aee36f9c946a3f6377211a1e0d8e3796f750f43f443cf97115e"
+      }
+    },
+    {
+      "source": "https://foozlecc.itch.io/lucifer-rpg-ui",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6323369"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6323369.zip": "c4cddb70ad02696bbe250c83e5e1f5ab248dd2d06adfb7ed2694f206454d16cf"
+      }
+    },
+    {
+      "source": "https://foozlecc.itch.io/lucifer-skeleton-hunter-enemy",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6322375"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6322375.zip": "0e473a66e9708e3294a9b54b7045fc209d15d17673dc78d00d7fbad23753bfad"
+      }
+    },
+    {
+      "source": "https://foozlecc.itch.io/lucifer-skeleton-king-boss",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6322591"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6322591.zip": "0d76669aba19736dba16f37b9ee0053095157335d0b7339ca54c4cc3b040d5bb"
+      }
+    },
+    {
+      "source": "https://foozlecc.itch.io/lucifer-sorceress",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6319235"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6319235.zip": "c91a5f09347d616f9b4113ce90eef19ccca8e4851489e1497a7438c5814d5a95"
+      }
+    },
+    {
+      "source": "https://foozlecc.itch.io/lucifer-warrior",
+      "license": "CC0-1.0",
+      "author": "David / chroma_dave",
+      "publisher": "Foozle",
+      "uploads": [
+        "6319135"
+      ],
+      "acquired": "2026-10-02",
+      "archiveSHA256": {
+        "6319135.zip": "d0373c9c2c29b114b12da0cb113ed66f6c422079761110c90cbaf84fc1e3f250"
+      }
+    },
+    {
+      "source": "https://opengameart.org/content/dungeon-crawl-32x32-tiles",
+      "license": "CC0-1.0",
+      "author": "Dungeon Crawl Stone Soup tile contributors",
+      "archiveSHA256": "41b4dc79632be19c47bf4555fd61e949189bb4496771b72e2dec5715b2d7bab4",
+      "acquired": "2026-10-02"
+    }
+  ],
+  "creatureSources": {
+    "f01-mob-1": {
+      "mob": "Sweeper Drone",
+      "source": "Dungeon Crawl Stone Soup Full/monster/nonliving/electric_golem.png",
+      "license": "CC0-1.0"
+    },
+    "f01-mob-2": {
+      "mob": "Slag Slime",
+      "source": "Dungeon Crawl Stone Soup Full/monster/amorphous/ooze_new.png",
+      "license": "CC0-1.0"
+    },
+    "f01-mob-3": {
+      "mob": "Cable Crawler",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/spider.png",
+      "license": "CC0-1.0"
+    },
+    "f01-mob-5": {
+      "mob": "Data Louse",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/giant_cockroach_new.png",
+      "license": "CC0-1.0"
+    },
+    "f01-mob-7": {
+      "mob": "Door Sentinel",
+      "source": "Dungeon Crawl Stone Soup Full/monster/nonliving/crystal_guardian.png",
+      "license": "CC0-1.0"
+    },
+    "f02-mob-1": {
+      "mob": "Rust Rat",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/grey_rat.png",
+      "license": "CC0-1.0"
+    },
+    "f02-mob-2": {
+      "mob": "Spore Runner",
+      "source": "Dungeon Crawl Stone Soup Full/monster/fungi_plants/wandering_mushroom_new.png",
+      "license": "CC0-1.0"
+    },
+    "f02-mob-5": {
+      "mob": "Suction Worm",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/worm_new.png",
+      "license": "CC0-1.0"
+    },
+    "f02-mob-6": {
+      "mob": "Pressure Jelly",
+      "source": "Dungeon Crawl Stone Soup Full/monster/amorphous/azure_jelly_new.png",
+      "license": "CC0-1.0"
+    },
+    "f02-mob-7": {
+      "mob": "Filter Crab",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/fire_crab.png",
+      "license": "CC0-1.0"
+    },
+    "f03-mob-1": {
+      "mob": "Magnet Hound",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/hound.png",
+      "license": "CC0-1.0"
+    },
+    "f03-mob-3": {
+      "mob": "Stack Golem",
+      "source": "Dungeon Crawl Stone Soup Full/monster/nonliving/guardian_golem.png",
+      "license": "CC0-1.0"
+    },
+    "f03-mob-8": {
+      "mob": "Altar Drone",
+      "source": "Dungeon Crawl Stone Soup Full/monster/nonliving/electric_golem.png",
+      "license": "CC0-1.0"
+    },
+    "f04-mob-2": {
+      "mob": "Spore Thrower",
+      "source": "Dungeon Crawl Stone Soup Full/monster/fungi_plants/wandering_mushroom_new.png",
+      "license": "CC0-1.0"
+    },
+    "f04-mob-3": {
+      "mob": "Root Catcher",
+      "source": "Dungeon Crawl Stone Soup Full/monster/fungi_plants/thorn_hunter.png",
+      "license": "CC0-1.0"
+    },
+    "f04-mob-4": {
+      "mob": "Newsroom Beetle",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/boulder_beetle.png",
+      "license": "CC0-1.0"
+    },
+    "f04-mob-5": {
+      "mob": "Printing Goblin",
+      "source": "Dungeon Crawl Stone Soup Full/monster/goblin_new.png",
+      "license": "CC0-1.0"
+    },
+    "f05-mob-5": {
+      "mob": "Slag Beetle",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/boulder_beetle.png",
+      "license": "CC0-1.0"
+    },
+    "f06-mob-1": {
+      "mob": "Advertisement Drone",
+      "source": "Dungeon Crawl Stone Soup Full/monster/nonliving/battlesphere.png",
+      "license": "CC0-1.0"
+    },
+    "f06-mob-7": {
+      "mob": "Advertisement Moth",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/ghost_moth_new.png",
+      "license": "CC0-1.0"
+    },
+    "f06-mob-8": {
+      "mob": "Contract Ghost",
+      "source": "Dungeon Crawl Stone Soup Full/monster/undead/flayed_ghost_new.png",
+      "license": "CC0-1.0"
+    },
+    "f07-mob-2": {
+      "mob": "Archive Moth",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/ghost_moth_new.png",
+      "license": "CC0-1.0"
+    },
+    "f07-mob-6": {
+      "mob": "Data Shadow",
+      "source": "Dungeon Crawl Stone Soup Full/monster/undead/eidolon.png",
+      "license": "CC0-1.0"
+    },
+    "f07-mob-7": {
+      "mob": "Seal Golem",
+      "source": "Dungeon Crawl Stone Soup Full/monster/nonliving/stone_golem.png",
+      "license": "CC0-1.0"
+    },
+    "f08-mob-1": {
+      "mob": "Time Tick",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/giant_mite.png",
+      "license": "CC0-1.0"
+    },
+    "f08-mob-6": {
+      "mob": "Rail Crab",
+      "source": "Dungeon Crawl Stone Soup Full/monster/abyss/apocalypse_crab.png",
+      "license": "CC0-1.0"
+    },
+    "f10-mob-8": {
+      "mob": "Signal Tick",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/worker_ant.png",
+      "license": "CC0-1.0"
+    },
+    "f11-mob-1": {
+      "mob": "Outage Drone",
+      "source": "Dungeon Crawl Stone Soup Full/monster/nonliving/orb_of_electricity.png",
+      "license": "CC0-1.0"
+    },
+    "f11-mob-2": {
+      "mob": "Null Ghost",
+      "source": "Dungeon Crawl Stone Soup Full/monster/undead/ghost_new.png",
+      "license": "CC0-1.0"
+    },
+    "f11-mob-6": {
+      "mob": "Transmitter Crab",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/fire_crab.png",
+      "license": "CC0-1.0"
+    },
+    "f11-mob-7": {
+      "mob": "Blind Camera",
+      "source": "Dungeon Crawl Stone Soup Full/monster/nonliving/crystal_guardian.png",
+      "license": "CC0-1.0"
+    },
+    "f11-mob-8": {
+      "mob": "Jamming Swarm",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/giant_mosquito.png",
+      "license": "CC0-1.0"
+    },
+    "f12-mob-3": {
+      "mob": "Director Shadow",
+      "source": "Dungeon Crawl Stone Soup Full/monster/undead/eidolon.png",
+      "license": "CC0-1.0"
+    },
+    "f12-mob-8": {
+      "mob": "Archive Moth",
+      "source": "Dungeon Crawl Stone Soup Full/monster/animals/moth_of_wrath_new.png",
+      "license": "CC0-1.0"
+    }
+  },
+  "npcSources": {
+    "mira": {
+      "source": "Dungeon Crawl Stone Soup Full/monster/unique/jessica_new.png",
+      "license": "CC0-1.0"
+    },
+    "ilya": {
+      "source": "Dungeon Crawl Stone Soup Full/monster/unique/eustachio_new.png",
+      "license": "CC0-1.0"
+    },
+    "tam": {
+      "source": "Dungeon Crawl Stone Soup Full/monster/deep_dwarf_artificer.png",
+      "license": "CC0-1.0"
+    },
+    "zuv": {
+      "source": "Dungeon Crawl Stone Soup Full/monster/goblin_new.png",
+      "license": "CC0-1.0"
+    },
+    "enno": {
+      "source": "Dungeon Crawl Stone Soup Full/monster/unique/joseph_new.png",
+      "license": "CC0-1.0"
+    },
+    "sera": {
+      "source": "Dungeon Crawl Stone Soup Full/monster/nonliving/spellforged_servitor.png",
+      "license": "CC0-1.0"
+    },
+    "veyl": {
+      "source": "Dungeon Crawl Stone Soup Full/monster/unique/frederick_new.png",
+      "license": "CC0-1.0"
+    },
+    "rhea": {
+      "source": "Dungeon Crawl Stone Soup Full/monster/unique/agnes_new.png",
+      "license": "CC0-1.0"
+    },
+    "oris": {
+      "source": "Dungeon Crawl Stone Soup Full/monster/nonliving/iron_golem.png",
+      "license": "CC0-1.0"
+    }
+  },
+  "itemGroups": {
+    "weapon": {
+      "start": 0,
+      "count": 24
+    },
+    "offhand": {
+      "start": 24,
+      "count": 8
+    },
+    "head": {
+      "start": 32,
+      "count": 8
+    },
+    "body": {
+      "start": 40,
+      "count": 12
+    },
+    "hands": {
+      "start": 52,
+      "count": 8
+    },
+    "feet": {
+      "start": 60,
+      "count": 8
+    },
+    "amulet": {
+      "start": 68,
+      "count": 8
+    },
+    "talisman": {
+      "start": 76,
+      "count": 8
+    },
+    "relic": {
+      "start": 84,
+      "count": 16
+    },
+    "consumable": {
+      "start": 100,
+      "count": 20
+    },
+    "key": {
+      "start": 120,
+      "count": 8
+    }
+  },
+  "itemSources": {
+    "0": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Common Arming Sword.png",
+      "license": "CC0-1.0"
+    },
+    "1": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Common Bearded Axe.png",
+      "license": "CC0-1.0"
+    },
+    "2": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Common Greatsword.png",
+      "license": "CC0-1.0"
+    },
+    "3": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Common Shamshir.png",
+      "license": "CC0-1.0"
+    },
+    "4": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Common Spear.png",
+      "license": "CC0-1.0"
+    },
+    "5": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Legendary Dane Axe.png",
+      "license": "CC0-1.0"
+    },
+    "6": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Legendary Rapier .png",
+      "license": "CC0-1.0"
+    },
+    "7": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Legendary Shamshir.png",
+      "license": "CC0-1.0"
+    },
+    "8": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Mages Spire.png",
+      "license": "CC0-1.0"
+    },
+    "9": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Mythic Battleaxe.png",
+      "license": "CC0-1.0"
+    },
+    "10": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Mythic Godhammer.png",
+      "license": "CC0-1.0"
+    },
+    "11": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Rare Explorers Hook.png",
+      "license": "CC0-1.0"
+    },
+    "12": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Rare Greatsword.png",
+      "license": "CC0-1.0"
+    },
+    "13": {
+      "category": "weapon",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Weapons/Png/Wizards Pole.png",
+      "license": "CC0-1.0"
+    },
+    "14": {
+      "category": "weapon",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/weapon/ancient_sword.png",
+      "license": "CC0-1.0"
+    },
+    "15": {
+      "category": "weapon",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/weapon/ankus.png",
+      "license": "CC0-1.0"
+    },
+    "16": {
+      "category": "weapon",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/weapon/axe.png",
+      "license": "CC0-1.0"
+    },
+    "17": {
+      "category": "weapon",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/weapon/bardiche_1.png",
+      "license": "CC0-1.0"
+    },
+    "18": {
+      "category": "weapon",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/weapon/bardiche_2.png",
+      "license": "CC0-1.0"
+    },
+    "19": {
+      "category": "weapon",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/weapon/bardiche_4.png",
+      "license": "CC0-1.0"
+    },
+    "20": {
+      "category": "weapon",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/weapon/bardiche_5.png",
+      "license": "CC0-1.0"
+    },
+    "21": {
+      "category": "weapon",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/weapon/battle_axe_1.png",
+      "license": "CC0-1.0"
+    },
+    "22": {
+      "category": "weapon",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/weapon/battle_axe_2.png",
+      "license": "CC0-1.0"
+    },
+    "23": {
+      "category": "weapon",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/weapon/battle_axe_3.png",
+      "license": "CC0-1.0"
+    },
+    "24": {
+      "category": "offhand",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/shields/buckler_1_new.png",
+      "license": "CC0-1.0"
+    },
+    "25": {
+      "category": "offhand",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/shields/buckler_1_old.png",
+      "license": "CC0-1.0"
+    },
+    "26": {
+      "category": "offhand",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/shields/buckler_2_new.png",
+      "license": "CC0-1.0"
+    },
+    "27": {
+      "category": "offhand",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/shields/buckler_2_old.png",
+      "license": "CC0-1.0"
+    },
+    "28": {
+      "category": "offhand",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/shields/buckler_3_new.png",
+      "license": "CC0-1.0"
+    },
+    "29": {
+      "category": "offhand",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/shields/buckler_3_old.png",
+      "license": "CC0-1.0"
+    },
+    "30": {
+      "category": "offhand",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/shields/dwarven_buckler_1.png",
+      "license": "CC0-1.0"
+    },
+    "31": {
+      "category": "offhand",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/shields/dwarven_buckler_2.png",
+      "license": "CC0-1.0"
+    },
+    "32": {
+      "category": "head",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Head/Png/Common Chainmail Helmet.png",
+      "license": "CC0-1.0"
+    },
+    "33": {
+      "category": "head",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Head/Png/Legendary Royal Helmet.png",
+      "license": "CC0-1.0"
+    },
+    "34": {
+      "category": "head",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Head/Png/Rare Explorers Ushanka.png",
+      "license": "CC0-1.0"
+    },
+    "35": {
+      "category": "head",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Head/Png/Rare Plate Helmet.png",
+      "license": "CC0-1.0"
+    },
+    "36": {
+      "category": "head",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Head/Png/Wizards Hat.png",
+      "license": "CC0-1.0"
+    },
+    "37": {
+      "category": "head",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/headgear/cap_1.png",
+      "license": "CC0-1.0"
+    },
+    "38": {
+      "category": "head",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/headgear/cap_2.png",
+      "license": "CC0-1.0"
+    },
+    "39": {
+      "category": "head",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/headgear/cap_jester.png",
+      "license": "CC0-1.0"
+    },
+    "40": {
+      "category": "body",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Chest/Png/Common ChainMail Chestpiece.png",
+      "license": "CC0-1.0"
+    },
+    "41": {
+      "category": "body",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Chest/Png/Common Gambeson.png",
+      "license": "CC0-1.0"
+    },
+    "42": {
+      "category": "body",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Chest/Png/Common Ragged shirt.png",
+      "license": "CC0-1.0"
+    },
+    "43": {
+      "category": "body",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Chest/Png/Legendary Royal Chestpiece.png",
+      "license": "CC0-1.0"
+    },
+    "44": {
+      "category": "body",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Chest/Png/Magic Sorceress Gambeson.png",
+      "license": "CC0-1.0"
+    },
+    "45": {
+      "category": "body",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Chest/Png/Magic Wizards Tunic Chestpiece.png",
+      "license": "CC0-1.0"
+    },
+    "46": {
+      "category": "body",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Chest/Png/Rare Explorers Top.png",
+      "license": "CC0-1.0"
+    },
+    "47": {
+      "category": "body",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Chest/Png/Rare Plate Chestpiece.png",
+      "license": "CC0-1.0"
+    },
+    "48": {
+      "category": "body",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/torso/animal_skin_1_new.png",
+      "license": "CC0-1.0"
+    },
+    "49": {
+      "category": "body",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/torso/animal_skin_1_old.png",
+      "license": "CC0-1.0"
+    },
+    "50": {
+      "category": "body",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/torso/animal_skin_2_new.png",
+      "license": "CC0-1.0"
+    },
+    "51": {
+      "category": "body",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/torso/animal_skin_2_old.png",
+      "license": "CC0-1.0"
+    },
+    "52": {
+      "category": "hands",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Misc/Png/Rare Explorers Gloves.png",
+      "license": "CC0-1.0"
+    },
+    "53": {
+      "category": "hands",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/hands/gauntlet_1.png",
+      "license": "CC0-1.0"
+    },
+    "54": {
+      "category": "hands",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/hands/glove_1_new.png",
+      "license": "CC0-1.0"
+    },
+    "55": {
+      "category": "hands",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/hands/glove_1_old.png",
+      "license": "CC0-1.0"
+    },
+    "56": {
+      "category": "hands",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/hands/glove_2_new.png",
+      "license": "CC0-1.0"
+    },
+    "57": {
+      "category": "hands",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/hands/glove_2_old.png",
+      "license": "CC0-1.0"
+    },
+    "58": {
+      "category": "hands",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/hands/glove_3_new.png",
+      "license": "CC0-1.0"
+    },
+    "59": {
+      "category": "hands",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/hands/glove_3_old.png",
+      "license": "CC0-1.0"
+    },
+    "60": {
+      "category": "feet",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Feet/Png/Common Chainmail Boots.png",
+      "license": "CC0-1.0"
+    },
+    "61": {
+      "category": "feet",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Feet/Png/Rare Explorers Boots.png",
+      "license": "CC0-1.0"
+    },
+    "62": {
+      "category": "feet",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Feet/Png/Rare Plate Boots.png",
+      "license": "CC0-1.0"
+    },
+    "63": {
+      "category": "feet",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Feet/Png/Wizards Shoes.png",
+      "license": "CC0-1.0"
+    },
+    "64": {
+      "category": "feet",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/feet/boots_1_brown_new.png",
+      "license": "CC0-1.0"
+    },
+    "65": {
+      "category": "feet",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/feet/boots_1_brown_old.png",
+      "license": "CC0-1.0"
+    },
+    "66": {
+      "category": "feet",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/feet/boots_2_jackboots.png",
+      "license": "CC0-1.0"
+    },
+    "67": {
+      "category": "feet",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/armor/feet/boots_3_stripe_new.png",
+      "license": "CC0-1.0"
+    },
+    "68": {
+      "category": "amulet",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Misc/Png/Common SIlver Amulet.png",
+      "license": "CC0-1.0"
+    },
+    "69": {
+      "category": "amulet",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Misc/Png/Rare Golden Gem Amulet.png",
+      "license": "CC0-1.0"
+    },
+    "70": {
+      "category": "amulet",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Misc/Png/Wizards Amulet.png",
+      "license": "CC0-1.0"
+    },
+    "71": {
+      "category": "amulet",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/amulet/bone_gray.png",
+      "license": "CC0-1.0"
+    },
+    "72": {
+      "category": "amulet",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/amulet/cameo_blue.png",
+      "license": "CC0-1.0"
+    },
+    "73": {
+      "category": "amulet",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/amulet/cameo_orange.png",
+      "license": "CC0-1.0"
+    },
+    "74": {
+      "category": "amulet",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/amulet/celtic_blue.png",
+      "license": "CC0-1.0"
+    },
+    "75": {
+      "category": "amulet",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/amulet/celtic_red.png",
+      "license": "CC0-1.0"
+    },
+    "76": {
+      "category": "talisman",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Misc/Png/Golden Enchanted Ring.png",
+      "license": "CC0-1.0"
+    },
+    "77": {
+      "category": "talisman",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Misc/Png/Silver Enchanted Ring.png",
+      "license": "CC0-1.0"
+    },
+    "78": {
+      "category": "talisman",
+      "source": "foozle/equipment/pack/Foozle_2DS0005_Lucifer_Equipment_Pixel_Art/Equipment/Misc/Png/Wizards Sparkle Ring.png",
+      "license": "CC0-1.0"
+    },
+    "79": {
+      "category": "talisman",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/ring/agate.png",
+      "license": "CC0-1.0"
+    },
+    "80": {
+      "category": "talisman",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/ring/brass.png",
+      "license": "CC0-1.0"
+    },
+    "81": {
+      "category": "talisman",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/ring/bronze.png",
+      "license": "CC0-1.0"
+    },
+    "82": {
+      "category": "talisman",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/ring/clay.png",
+      "license": "CC0-1.0"
+    },
+    "83": {
+      "category": "talisman",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/ring/copper.png",
+      "license": "CC0-1.0"
+    },
+    "84": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/magic_lamp.png",
+      "license": "CC0-1.0"
+    },
+    "85": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/mirror.png",
+      "license": "CC0-1.0"
+    },
+    "86": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_box.png",
+      "license": "CC0-1.0"
+    },
+    "87": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_lamp_inert.png",
+      "license": "CC0-1.0"
+    },
+    "88": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_lamp_new.png",
+      "license": "CC0-1.0"
+    },
+    "89": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_lamp_old.png",
+      "license": "CC0-1.0"
+    },
+    "90": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_lantern.png",
+      "license": "CC0-1.0"
+    },
+    "91": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_orb.png",
+      "license": "CC0-1.0"
+    },
+    "92": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_orb_2.png",
+      "license": "CC0-1.0"
+    },
+    "93": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_phantom_mirror.png",
+      "license": "CC0-1.0"
+    },
+    "94": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_phial.png",
+      "license": "CC0-1.0"
+    },
+    "95": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_phial_inert.png",
+      "license": "CC0-1.0"
+    },
+    "96": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_stone_inert.png",
+      "license": "CC0-1.0"
+    },
+    "97": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_stone_new.png",
+      "license": "CC0-1.0"
+    },
+    "98": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/misc_stone_old.png",
+      "license": "CC0-1.0"
+    },
+    "99": {
+      "category": "relic",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/runes/generic.png",
+      "license": "CC0-1.0"
+    },
+    "100": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/black_new.png",
+      "license": "CC0-1.0"
+    },
+    "101": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/black_old.png",
+      "license": "CC0-1.0"
+    },
+    "102": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/brilliant_blue_new.png",
+      "license": "CC0-1.0"
+    },
+    "103": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/brilliant_blue_old.png",
+      "license": "CC0-1.0"
+    },
+    "104": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/brown_new.png",
+      "license": "CC0-1.0"
+    },
+    "105": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/brown_old.png",
+      "license": "CC0-1.0"
+    },
+    "106": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/bubbly.png",
+      "license": "CC0-1.0"
+    },
+    "107": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/clear.png",
+      "license": "CC0-1.0"
+    },
+    "108": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/cloudy.png",
+      "license": "CC0-1.0"
+    },
+    "109": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/cyan_new.png",
+      "license": "CC0-1.0"
+    },
+    "110": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/cyan_old.png",
+      "license": "CC0-1.0"
+    },
+    "111": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/dark.png",
+      "license": "CC0-1.0"
+    },
+    "112": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/effervescent.png",
+      "license": "CC0-1.0"
+    },
+    "113": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/potion/emerald.png",
+      "license": "CC0-1.0"
+    },
+    "114": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/scroll/blank_paper.png",
+      "license": "CC0-1.0"
+    },
+    "115": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/scroll/scroll-blue.png",
+      "license": "CC0-1.0"
+    },
+    "116": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/scroll/scroll-brown.png",
+      "license": "CC0-1.0"
+    },
+    "117": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/scroll/scroll-cyan.png",
+      "license": "CC0-1.0"
+    },
+    "118": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/scroll/scroll-green.png",
+      "license": "CC0-1.0"
+    },
+    "119": {
+      "category": "consumable",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/scroll/scroll-grey.png",
+      "license": "CC0-1.0"
+    },
+    "120": {
+      "category": "key",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/key.png",
+      "license": "CC0-1.0"
+    },
+    "121": {
+      "category": "key",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/runes/generic.png",
+      "license": "CC0-1.0"
+    },
+    "122": {
+      "category": "key",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/runes/rune_abyss.png",
+      "license": "CC0-1.0"
+    },
+    "123": {
+      "category": "key",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/runes/rune_cerebov_new.png",
+      "license": "CC0-1.0"
+    },
+    "124": {
+      "category": "key",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/runes/rune_cerebov_old.png",
+      "license": "CC0-1.0"
+    },
+    "125": {
+      "category": "key",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/runes/rune_cocytus_new.png",
+      "license": "CC0-1.0"
+    },
+    "126": {
+      "category": "key",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/runes/rune_cocytus_old.png",
+      "license": "CC0-1.0"
+    },
+    "127": {
+      "category": "key",
+      "source": "crawl/pack/Dungeon Crawl Stone Soup Full/item/misc/runes/rune_demonic_1.png",
+      "license": "CC0-1.0"
+    }
+  }
+}
