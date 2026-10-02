@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
+import { isDeepStrictEqual } from 'node:util';
 import { createCampaign } from '../src/game/campaign';
 import { acceptContract, progressContracts, bankContracts } from '../src/game/contracts';
 import { generateWorld, TILE } from '../src/game/world';
@@ -127,9 +128,9 @@ try {
   const resumed = (await request('saves?slot=0')).data.campaign.world;
   check(
     resumed.route === c.world.route &&
-      JSON.stringify(resumed.bossIds) === JSON.stringify(c.world.bossIds) &&
-      JSON.stringify(resumed.modifiers) === JSON.stringify(c.world.modifiers) &&
-      JSON.stringify(resumed.edges) === JSON.stringify(c.world.edges),
+      isDeepStrictEqual(resumed.bossIds, c.world.bossIds) &&
+      isDeepStrictEqual(resumed.modifiers, c.world.modifiers) &&
+      isDeepStrictEqual(resumed.edges, c.world.edges),
     'random route, boss cast, modifiers and branch graph survive a cloud roundtrip',
   );
   check(
